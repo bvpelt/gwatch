@@ -41,6 +41,7 @@ class Logger {
   }
 
   private function log(
+    source as Lang.String,
     level as Lang.String,
     levelValue as Lang.Number,
     message as Lang.String
@@ -56,23 +57,23 @@ class Logger {
       now.sec.format("%02d"),
     ]);
 
-    System.println(timeStamp + " [" + level + "]: " + message);
+    System.println(timeStamp + " " + source + " [" + level + "]: " + message);
   }
 
-  function debug(message as Lang.String) as Void {
-    log("DEBUG", LEVEL_DEBUG, message);
+  function debug(source as Lang.String, message as Lang.String) as Void {
+    log(source, "DEBUG", LEVEL_DEBUG, message);
   }
 
-  function info(message as Lang.String) as Void {
-    log("INFO", LEVEL_INFO, message);
+  function info(source as Lang.String, message as Lang.String) as Void {
+    log(source, "INFO", LEVEL_INFO, message);
   }
 
-  function warn(message as Lang.String) as Void {
-    log("WARN", LEVEL_WARN, message);
+  function warn(source as Lang.String, message as Lang.String) as Void {
+    log(source, "WARN", LEVEL_WARN, message);
   }
 
-  function error(message as Lang.String) as Void {
-    log("ERROR", LEVEL_ERROR, message);
+  function error(source as Lang.String, message as Lang.String) as Void {
+    log(source, "ERROR", LEVEL_ERROR, message);
   }
 }
 

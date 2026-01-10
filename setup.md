@@ -137,10 +137,12 @@ In /tmp/com.garmin.connectiq/GARMIN/APPS/LOGS/CIQ_LOG.YML there is information o
 Setup the environment
 
 ```bash
+cd pyutil
 python3 -m venv .venv
 ```
 
 Using environment
 ```bash
+cd pyutil
 source .venv/bin/activate
 ```

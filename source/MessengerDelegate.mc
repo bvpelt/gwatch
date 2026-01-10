@@ -70,7 +70,10 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
     var phoneMsg = new TestPhoneAppMessage(message);
     _messageManager.handlePhoneMessage(phoneMsg);
 
-    getLogger().debug("Test message added from: " + testMsg["sender"]);
+    getLogger().debug(
+      "MessengerDelegate",
+      "Test message added from: " + testMsg["sender"]
+    );
     WatchUi.requestUpdate();
   }
 
@@ -78,35 +81,44 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
     var direction = swipeEvent.getDirection();
     var currentView = WatchUi.getCurrentView();
 
-    getLogger().debug("Swipe detected: " + direction);
+    getLogger().debug("MessengerDelegate", "Swipe detected: " + direction);
 
     // Check if we're in Messages view
     if (currentView[0] instanceof MessagesView) {
       if (direction == WatchUi.SWIPE_UP) {
         // Scroll up (show older messages)
-        getLogger().debug("Scrolling up in messages");
+        getLogger().debug("MessengerDelegate", "Scrolling up in messages");
         (currentView[0] as MessagesView).scroll(-1);
         return true;
       } else if (direction == WatchUi.SWIPE_DOWN) {
         // Scroll down (show newer messages)
-        getLogger().debug("Scrolling down in messages");
+        getLogger().debug("MessengerDelegate", "Scrolling down in messages");
         (currentView[0] as MessagesView).scroll(1);
         return true;
       } else if (direction == WatchUi.SWIPE_LEFT) {
         // Switch to clock view
-        getLogger().debug("Swipe left - switching to Clock view");
+        getLogger().debug(
+          "MessengerDelegate",
+          "Swipe left - switching to Clock view"
+        );
         switchView(0);
         return true;
       } else if (direction == WatchUi.SWIPE_RIGHT) {
         // Switch to clock view
-        getLogger().debug("Swipe right - switching to Clock view");
+        getLogger().debug(
+          "MessengerDelegate",
+          "Swipe right - switching to Clock view"
+        );
         switchView(0);
         return true;
       }
     } else if (currentView[0] instanceof ClockView) {
       // In Clock view, swipe left or right to go to Messages
       if (direction == WatchUi.SWIPE_LEFT || direction == WatchUi.SWIPE_RIGHT) {
-        getLogger().debug("Swipe - switching to Messages view");
+        getLogger().debug(
+          "MessengerDelegate",
+          "Swipe - switching to Messages view"
+        );
         switchView(1);
         return true;
       }

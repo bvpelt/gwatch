@@ -11,15 +11,15 @@ class ClockView extends WatchUi.View {
   function initialize(messageManager as MessageManager) {
     View.initialize();
     _messageManager = messageManager;
-    getLogger().debug("=== ClockView initialized ===");
+    getLogger().debug("ClockView", "=== ClockView initialized ===");
   }
 
   function onLayout(dc as Graphics.Dc) as Void {
-    getLogger().debug("=== ClockView onLayout ===");
+    getLogger().debug("ClockView", "=== ClockView onLayout ===");
   }
 
   function onShow() as Void {
-    getLogger().debug("=== ClockView onShow ===");
+    getLogger().debug("ClockView", "=== ClockView onShow ===");
   }
   function onUpdate(dc as Graphics.Dc) as Void {
     var width = dc.getWidth();

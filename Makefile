@@ -25,6 +25,10 @@ run: build
 	@echo "Running in simulator..."
 	pgrep simulator >/dev/null || connectiq &
 	sleep 2
+	@# Set GTK environment variables to prevent crashes
+	@export GDK_BACKEND=x11 && \
+	export GTK_THEME=Adwaita && \
+	export NO_AT_BRIDGE=1 && \
 	monkeydo build/$(APP_NAME).prg $(DEVICE) 
 
 clean-storage: clean
