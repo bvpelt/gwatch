@@ -1,0 +1,21 @@
+<strings>
+    <string id="AppName">Messenger Watch</string>
+
+    <!-- View names -->
+    <string id="ClockView">Clock</string>
+    <string id="MessagesView">Messages</string>
+
+    <!-- Messages -->
+    <string id="NoMessages">No messages</string>
+    <string id="Connecting">Connecting...</string>
+    <string id="Connected">Connected</string>
+    <string id="Disconnected">Disconnected</string>
+
+    <!-- Settings -->
+    <string id="ViewModeTitle">Default View</string>
+    <string id="ViewModeClock">Clock</string>
+    <string id="ViewModeMessages">Messages</string>
+
+    <string id="ShowNotificationsTitle">Show Notifications</string>
+    <string id="MessageLimitTitle">Message History</string>
+</strings>

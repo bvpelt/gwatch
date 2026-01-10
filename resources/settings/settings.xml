@@ -1,0 +1,16 @@
+<settings>
+    <setting propertyKey="@Properties.DefaultView" title="@Strings.ViewModeTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.ViewModeClock</listEntry>
+            <listEntry value="1">@Strings.ViewModeMessages</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.ShowNotifications" title="@Strings.ShowNotificationsTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.MessageLimit" title="@Strings.MessageLimitTitle">
+        <settingConfig type="numeric" min="5" max="50" />
+    </setting>
+</settings>

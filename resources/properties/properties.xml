@@ -1,0 +1,5 @@
+<properties>
+    <property id="DefaultView" type="number">0</property>
+    <property id="ShowNotifications" type="boolean">true</property>
+    <property id="MessageLimit" type="number">30</property>
+</properties>

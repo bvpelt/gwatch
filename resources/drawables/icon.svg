@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="54"
+   height="54"
+   viewBox="0 0 54 54"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (2aeb623e1d, 2025-05-12)"
+   sodipodi:docname="icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#eeae51"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="13.156117"
+     inkscape:cx="38.575213"
+     inkscape:cy="21.776943"
+     inkscape:window-width="1854"
+     inkscape:window-height="1131"
+     inkscape:window-x="66"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient1"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#800000;stop-opacity:1;"
+         offset="0"
+         id="stop2" />
+      <stop
+         style="stop-color:#800000;stop-opacity:0;"
+         offset="1"
+         id="stop3" />
+    </linearGradient>
+    <linearGradient
+       id="swatch1"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#800000;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1"
+       id="linearGradient3"
+       x1="16.646248"
+       y1="39.905396"
+       x2="33.216488"
+       y2="39.905396"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.5366972,0,0,1.5,-10.834252,-25.311421)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:18px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#800000"
+       x="6.1568322"
+       y="17.862415"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         x="6.1568322"
+         y="17.862415">Com</tspan></text>
+    <ellipse
+       style="fill:url(#linearGradient3);stroke-width:1.51824"
+       id="path1"
+       cx="27.477711"
+       cy="34.546673"
+       rx="12.731721"
+       ry="12.42768" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2">
+    <path
+       style="fill:#501616;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       d="m 28.1238,34.888715 c 10.793459,-5.54875 10.793459,-5.54875 10.793459,-5.54875"
+       id="path3" />
+    <path
+       style="fill:#501616;fill-opacity:1;stroke:#000000;stroke-opacity:1"
+       d="m 21.890958,30.100067 c 6.612894,5.016678 6.612894,5.016678 6.612894,5.016678"
+       id="path4" />
+  </g>
+</svg>
