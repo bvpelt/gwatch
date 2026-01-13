@@ -33,6 +33,7 @@ run: build
 
 clean-storage: clean
 	@echo "Cleaning simulator storage..."
+	rm -rf /tmp/com.garmin.connectiq/* 
 	rm -rf ~/.Garmin/ConnectIQ/Devices/$(DEVICE)/APPS/*
 
 fresh: clean clean-storage build run
