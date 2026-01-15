@@ -8,10 +8,11 @@ class Logger {
 
   // Log levels
   enum {
-    LEVEL_DEBUG = 0,
-    LEVEL_INFO = 1,
-    LEVEL_WARN = 2,
-    LEVEL_ERROR = 3,
+    LEVEL_TRACE = 0,
+    LEVEL_DEBUG = 1,
+    LEVEL_INFO = 2,
+    LEVEL_WARN = 3,
+    LEVEL_ERROR = 4,
   }
 
   private var _minLevel as Lang.Number;
@@ -19,7 +20,7 @@ class Logger {
 
   // Private constructor
   private function initialize() {
-    _minLevel = LEVEL_DEBUG;
+    _minLevel = LEVEL_TRACE;
     _enabled = true;
   }
 
@@ -58,6 +59,10 @@ class Logger {
     ]);
 
     System.println(timeStamp + " " + source + " [" + level + "]: " + message);
+  }
+
+  function trace(source as Lang.String, message as Lang.String) as Void {
+    log(source, "TRACE", LEVEL_TRACE, message);
   }
 
   function debug(source as Lang.String, message as Lang.String) as Void {

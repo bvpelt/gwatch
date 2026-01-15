@@ -6,10 +6,22 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 
 class MessagesView extends WatchUi.View {
+  private static var _instance as MessagesView?;
   private var _messageManager;
   private var _scrollOffset as Lang.Number;
+  private var logger;
 
-  function initialize(messageManager as MessageManager) {
+  // Get singleton instance
+  static function getInstance() as MessagesView {
+    if (_instance == null) {
+      _instance = new MessagesView(getMessageManager());
+    }
+    return _instance;
+  }
+
+  // Private constructor
+  private function initialize(messageManager as MessageManager) {
+    logger = getLogger();
     WatchUi.View.initialize();
     _messageManager = messageManager;
     _scrollOffset = 0;
@@ -222,6 +234,15 @@ class MessagesView extends WatchUi.View {
     WatchUi.requestUpdate();
   }
 
-  function onEnterSleep() as Void {}
-  function onExitSleep() as Void {}
+  function onEnterSleep() as Void {
+    logger.debug("MessagesView", "Entering sleep mode");
+  }
+  function onExitSleep() as Void {
+    logger.debug("MessagesView", "Exiting sleep mode");
+  }
+}
+
+// Global convenience function
+function getMessagesView() as MessagesView {
+  return MessagesView.getInstance();
 }

@@ -6,22 +6,73 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 
 class ClockView extends WatchUi.View {
+  private static var _instance as ClockView?;
+  private var _updateTimer;
   private var _messageManager;
+  private var logger;
 
-  function initialize(messageManager as MessageManager) {
+  // Private constructor
+  private function initialize(messageManager as MessageManager) {
+    logger = getLogger();
     View.initialize();
     _messageManager = messageManager;
-    getLogger().debug("ClockView", "=== ClockView initialized ===");
+    logger.debug("ClockView", "=== ClockView initialized ===");
+  }
+
+  // Get singleton instance
+  static function getInstance() as ClockView {
+    if (_instance == null) {
+      _instance = new ClockView(getMessageManager());
+    }
+    return _instance;
+  }
+
+  function stopClock() as Void {
+    if (_updateTimer != null) {
+      _updateTimer.stop();
+      _updateTimer = null;
+    }
+  }
+
+  function startClock() as Void {
+    onShow(); // This re-initializes the timer
+  }
+
+  function getUpdateTimer() {
+    if (_updateTimer == null) {
+      _updateTimer = new Timer.Timer();
+    }
+    return _updateTimer;
   }
 
   function onLayout(dc as Graphics.Dc) as Void {
-    getLogger().debug("ClockView", "=== ClockView onLayout ===");
+    logger.debug("ClockView", "=== ClockView onLayout ===");
   }
 
   function onShow() as Void {
-    getLogger().debug("ClockView", "=== ClockView onShow ===");
+    _updateTimer = getUpdateTimer();
+    logger.debug("ClockView", "=== ClockView onShow === start 1 second timer");
+    // Update every 1000ms (1 second)
+    _updateTimer.start(method(:onTimer), 1000, true);
   }
+
+  // This is called when the view is hidden/closed
+  function onHide() {
+    logger.debug("ClockView", "=== ClockView onHide === stop 1 second timer");
+    if (_updateTimer != null) {
+      _updateTimer.stop();
+      _updateTimer = null;
+    }
+  }
+
+  function onTimer() as Void {
+    logger.trace("ClockView", "=== onTimer === requesting update");
+    // Request the UI to call onUpdate()
+    WatchUi.requestUpdate();
+  }
+
   function onUpdate(dc as Graphics.Dc) as Void {
+    logger.trace("ClockView", "=== ClockView onUpdate ===");
     var width = dc.getWidth();
     var height = dc.getHeight();
 
@@ -123,4 +174,9 @@ class ClockView extends WatchUi.View {
   function onEnterSleep() as Void {}
 
   function onExitSleep() as Void {}
+}
+
+// Global convenience function
+function getClockView() as ClockView {
+  return ClockView.getInstance();
 }

@@ -7,8 +7,8 @@ APP_NAME = MessengerApp
 .PHONY: clean build run fresh kill-simulator
 
 kill-simulator:
-	@echo "Killing simulator..."
-	killall simulator || true
+	@echo "Killing simulator and rogue processes..."
+	killall -9 simulator monkeydo shell 2>/dev/null || true
 
 clean: kill-simulator
 	@echo "Cleaning build artifacts..."
@@ -24,12 +24,14 @@ build:
 run: build
 	@echo "Running in simulator..."
 	pgrep simulator >/dev/null || connectiq &
-	sleep 2
-	@# Set GTK environment variables to prevent crashes
-	@export GDK_BACKEND=x11 && \
-	export GTK_THEME=Adwaita && \
-	export NO_AT_BRIDGE=1 && \
-	monkeydo build/$(APP_NAME).prg $(DEVICE) 
+	sleep 5
+	#export LIBGL_ALWAYS_SOFTWARE=1 && \
+	#export GDK_BACKEND=x11 && \
+	#export NO_AT_BRIDGE=1 && \
+	#export GTK_PATH="" && \
+	#export NO_GAIL=1 && \
+	#export NO_AT_SPI=1 && \
+	monkeydo build/MessengerApp.prg fr165
 
 clean-storage: clean
 	@echo "Cleaning simulator storage..."

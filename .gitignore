@@ -2,4 +2,11 @@ bin/
 build/
 
 pyutil/.venv
-.venv
+.venvgen/
+
+gen/
+internal-mir/
+mir/
+
+gwatch-settings.json
+gwatch.prg.debug.xml

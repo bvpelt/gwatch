@@ -2,4 +2,39 @@
     <property id="DefaultView" type="number">0</property>
     <property id="ShowNotifications" type="boolean">true</property>
     <property id="MessageLimit" type="number">30</property>
+
+    <!-- DebugLevels     
+    LEVEL_TRACE = 0,
+    LEVEL_DEBUG = 1,
+    LEVEL_INFO = 2,
+    LEVEL_WARN = 3,
+    LEVEL_ERROR = 4,
+    -->
+    <property id="MinimalDebugLevel" type="number">0</property>
+
+
+    <!-- Profile selector -->
+    <property id="ColorProfile" type="number">0</property>
+
+    <!-- Hidden boolean to control custom settings visibility -->
+    <property id="IsCustomProfile" type="boolean">false</property>
+
+    <property id="UpdateSeconds" type="boolean">true</property>
+
+    <property id="HandFgColor" type="number">16711680</property>
+    <property id="HandBgColor" type="number">16711680</property>
+    <property id="HandCenterColor" type="number">16711680</property>
+
+    <property id="FaceBgColor" type="number">0</property>
+    <property id="FaceBorderColor" type="number">0</property>
+
+    <property id="DayBgColor" type="number">0</property>
+    <property id="DayNameColor" type="number">16725811</property>
+    <property id="DayNumberColor" type="number">10526880</property>
+    <property id="DayOutlineColor" type="number">12632256</property>
+
+    <property id="HourMarkerColor" type="number">16777215</property>
+    <property id="MinuteTickColor" type="number">10526880</property>
+    <property id="NumberColor" type="number">16777215</property>
+
 </properties>

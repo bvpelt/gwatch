@@ -18,4 +18,54 @@
 
     <string id="ShowNotificationsTitle">Show Notifications</string>
     <string id="MessageLimitTitle">Message History</string>
+
+
+    <!-- Profile names -->
+    <string id="ColorProfileTitle">Color Profile</string>
+    <string id="ProfileClassic">Classic Red</string>
+    <string id="ProfileBlueSteel">Blue Steel</string>
+    <string id="ProfileGreenNature">Green Nature</string>
+    <string id="ProfileGoldLuxury">Gold Luxury</string>
+    <string id="ProfileCustom">Custom</string>
+
+    <string id="UpdateSecondsTitle">Update Every Second</string>
+
+    <string id="HandFgColorTitle">Hand Foreground</string>
+    <string id="HandBgColorTitle">Hand Background</string>
+    <string id="HandCenterColorTitle">Hand Center</string>
+
+
+    <string id="FaceBgColorTitle">Face Background</string>
+    <string id="FaceBorderColorTitle">Face Border</string>
+
+    <string id="DayBgColorTitle">Day Background</string>
+    <string id="DayNameColorTitle">Day Name</string>
+    <string id="DayNumberColorTitle">Day Number</string>
+    <string id="DayOutlineColorTitle">Day Outline</string>
+
+    <string id="HourMarkerColorTitle">Hour Marker</string>
+    <string id="MinuteTickColorTitle">Minute Tick</string>
+    <string id="NumberColorTitle">Number</string>
+
+
+    <string id="GroupHandsTitle">Hands Settings</string>
+    <string id="GroupHandsDesc">Customize the appearance of the watch hands.</string>
+    <string id="GroupFaceTitle">Face Settings</string>
+    <string id="GroupFaceDesc">Customize the appearance of the watch face.</string>
+    <string id="DayFaceTitle">Day Settings</string>
+    <string id="DayFaceDesc">Customize the appearance for day of the watch face.</string>
+    <string id="MarkerFaceTitle">Marker Settings</string>
+    <string id="MarkerFaceDesc">Customize the appearance for markers on the watch face.</string>
+
+    <string id="ColorBlack">Black</string>
+    <string id="ColorBlue">Blue</string>
+    <string id="ColorGold">Gold</string>
+    <string id="ColorDarkGray">Dark Gray</string>
+    <string id="ColorGray">Gray</string>
+    <string id="ColorGreen">Green</string>
+    <string id="ColorRed">Red</string>
+    <string id="ColorSilver">Silver</string>
+    <string id="ColorWhite">White</string>
+    <string id="ColorYellow">Yellow</string>
+
 </strings>

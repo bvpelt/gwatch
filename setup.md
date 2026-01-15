@@ -145,4 +145,9 @@ Using environment
 ```bash
 cd pyutil
 source .venv/bin/activate
+
+pip install pip-tools
+
+pip install flask
+pip install flask_cors
 ```

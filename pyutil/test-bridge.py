@@ -17,6 +17,7 @@ messages = []
 @app.route('/send_message', methods=['POST'])
 def send_message():
     """Receive message from Android app"""
+    print(f"Receive message from Android app")
     data = request.json
     print(f"Received message: {data}")
     messages.append(data)
@@ -27,10 +28,10 @@ def send_message():
         msg_json = json.dumps(data)
         print(f"Sending to watch: {msg_json}")
         
-        # sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # sock.connect((SIMULATOR_HOST, SIMULATOR_PORT))
-        # sock.sendall(str(data).encode())
-        # sock.close()
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((SIMULATOR_HOST, SIMULATOR_PORT))
+        sock.sendall(str(data).encode())
+        sock.close()
 
         # This simulates sending a phone app message
         # You'll need to trigger it in the simulator manually

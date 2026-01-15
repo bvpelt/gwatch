@@ -13,4 +13,213 @@
     <setting propertyKey="@Properties.MessageLimit" title="@Strings.MessageLimitTitle">
         <settingConfig type="numeric" min="5" max="50" />
     </setting>
+
+    <!-- Profile Selector at the top -->
+    <setting propertyKey="@Properties.ColorProfile" title="@Strings.ColorProfileTitle">
+        <settingConfig type="list" required="true">
+            <listEntry value="0">@Strings.ProfileClassic</listEntry>
+            <listEntry value="1">@Strings.ProfileBlueSteel</listEntry>
+            <listEntry value="2">@Strings.ProfileGreenNature</listEntry>
+            <listEntry value="3">@Strings.ProfileGoldLuxury</listEntry>
+            <listEntry value="4">@Strings.ProfileCustom</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.UpdateSeconds" title="@Strings.UpdateSecondsTitle">
+        <settingConfig type="boolean" required="true" />
+    </setting>
+
+    <group id="Hands" title="@Strings.GroupHandsTitle" description="@Strings.GroupHandsDesc"
+        enableIfTrue="@Properties.IsCustomProfile">
+        <setting propertyKey="@Properties.HandFgColor" title="@Strings.HandFgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.HandBgColor" title="@Strings.HandBgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.HandCenterColor" title="@Strings.HandCenterColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+
+    <group id="Face" title="@Strings.GroupFaceTitle" description="@Strings.GroupFaceDesc"
+        enableIfTrue="@Properties.ColorProfile == 4">
+        <setting propertyKey="@Properties.FaceBgColor" title="@Strings.FaceBgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.FaceBorderColor" title="@Strings.FaceBorderColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+
+    <group id="DayFace" title="@Strings.DayFaceTitle" description="@Strings.DayFaceDesc"
+        enableIfTrue="@Properties.IsCustomProfile">
+
+        <setting propertyKey="@Properties.DayBgColor" title="@Strings.DayBgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.DayNameColor" title="@Strings.DayNameColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.DayNumberColor" title="@Strings.DayNumberColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.DayOutlineColor" title="@Strings.DayOutlineColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+
+    <group id="Marker" title="@Strings.MarkerFaceTitle" description="@Strings.MarkerFaceDesc"
+        enableIfTrue="@Properties.IsCustomProfile">
+
+        <setting propertyKey="@Properties.HourMarkerColor" title="@Strings.HourMarkerColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.MinuteTickColor" title="@Strings.MinuteTickColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.NumberColor" title="@Strings.NumberColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0">@Strings.ColorBlack</listEntry>
+                <listEntry value="255">@Strings.ColorBlue</listEntry>
+                <listEntry value="16755200">@Strings.ColorGold</listEntry>
+                <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
+                <listEntry value="8421504">@Strings.ColorGray</listEntry>
+                <listEntry value="65280">@Strings.ColorGreen</listEntry>
+                <listEntry value="16711680">@Strings.ColorRed</listEntry>
+                <listEntry value="11184810">@Strings.ColorSilver</listEntry>
+                <listEntry value="16777215">@Strings.ColorWhite</listEntry>
+                <listEntry value="16776960">@Strings.ColorYellow</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
 </settings>
