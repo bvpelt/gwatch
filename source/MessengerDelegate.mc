@@ -6,12 +6,14 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
   private static var _instance as MessengerDelegate?;
   private var _messageManager;
   private var logger;
+  private var propertieUtility;
   private var currentWatchView as Lang.Integer;
 
   // Private constructor
   private function initialize(messageManager as MessageManager) {
     logger = getLogger();
-    self.currentWatchView = Application.Properties.getValue("DefaultView");
+    propertieUtility = getPropertieUtility();
+    currentWatchView = propertieUtility.getPropertyNumber("DefaultView", 0);
     BehaviorDelegate.initialize();
     _messageManager = getMessageManager();
   }
@@ -162,12 +164,6 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
   }
 
   private function switchViewxx(viewType as Lang.Number) as Void {
-    var currentView = WatchUi.getCurrentView()[0];
-
-    // 1. STOP the current timer before leaving the view
-    if (currentView has :stopClock) {
-      currentView.stopClock();
-    }
 
     var nextView;
     switch (viewType) {
@@ -188,16 +184,6 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
   }
 
   private function switchView(viewType as Lang.Number) as Void {
-    // 1. Tell the App to cancel any pending sync timers so they don't fire mid-switch
-    var app = Application.getApp();
-    if (app has :cancelSyncTimer) {
-      app.cancelSyncTimer();
-    }
-
-    var currentView = WatchUi.getCurrentView()[0];
-    if (currentView != null && currentView has :stopClock) {
-      currentView.stopClock();
-    }
 
     var nextView;
     switch (viewType) {

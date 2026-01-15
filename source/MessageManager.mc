@@ -9,6 +9,7 @@ class MessageManager {
   private var _messages as Lang.Array<Lang.Dictionary>;
   private var _connectionStatus as Lang.Number;
   private var _maxMessages as Lang.Number;
+  private var propertieUtility;
   private var logger;
 
   enum {
@@ -20,18 +21,21 @@ class MessageManager {
   // Private constructor
   private function initialize() {
     logger = getLogger();
+     propertieUtility = getPropertieUtility();
     _messages = [];
     _connectionStatus = STATUS_DISCONNECTED;
 
-    var limit = Application.Properties.getValue("MessageLimit");
+    var limit = propertieUtility.getPropertyNumber("MessageLimit", 30);
     logger.debug(
       "MessageManager",
-      "MessageManager Retrieved MessageLimit property: " + limit
+      "=== MessageManager Retrieved MessageLimit property: " + limit + " ==="
     );
     _maxMessages = limit != null ? limit : 20;
     logger.debug(
       "MessageManager",
-      "MessageManager initialized with maxMessages: " + _maxMessages
+      "=== MessageManager initialized with maxMessages: " +
+        _maxMessages +
+        " ==="
     );
   }
 
@@ -41,22 +45,6 @@ class MessageManager {
       _instance = new MessageManager();
     }
     return _instance;
-  }
-
-  function handlePhoneMessagexx(msg as Communications.PhoneAppMessage) as Void {
-    var data = msg.data;
-    if (data != null && data instanceof Lang.Dictionary) {
-      if (data.hasKey("type")) {
-        var msgType = data["type"];
-        if (msgType.equals("message")) {
-          addMessage(data);
-        } else if (msgType.equals("status")) {
-          updateConnectionStatus(data["status"]);
-        } else if (msgType.equals("clear")) {
-          clearMessages();
-        }
-      }
-    }
   }
 
   function handlePhoneMessage(msg as Communications.PhoneAppMessage) as Void {
@@ -131,7 +119,7 @@ class MessageManager {
     logger.debug("MessageManager", "New message from: " + sender.toString());
   }
 
-  function getMessages() as Lang.Array {
+  function getMessages() as Lang.Array<Lang.Dictionary> {
     return _messages;
   }
 
@@ -151,25 +139,6 @@ class MessageManager {
 
   function getConnectionStatus() as Lang.Number {
     return _connectionStatus;
-  }
-
-  function sendToPhonexx(data as Lang.Dictionary or Lang.String) as Void {
-    // Detect if we are in the simulator to avoid the GTK Segfault
-    var deviceSettings = System.getDeviceSettings();
-    if (deviceSettings has :isSimulator && deviceSettings.isSimulator) {
-      logger.warn(
-        "MessageManager",
-        "Skipping transmit in Simulator to prevent crash"
-      );
-      return;
-    }
-
-    logger.debug("MessageManager", "Sending data to phone");
-    try {
-      Communications.transmit(data, null, new CommListener());
-    } catch (ex) {
-      logger.error("MessageManager", "Transmit Error");
-    }
   }
 
   function sendToPhone(data as Lang.Dictionary or Lang.String) as Void {
@@ -224,9 +193,10 @@ class MessageManager {
 }
 
 class CommListener extends Communications.ConnectionListener {
-  private var logger = getLogger();
+  private var logger;
 
   function initialize() {
+    logger = getLogger();
     ConnectionListener.initialize();
   }
 

@@ -7,7 +7,6 @@ using Toybox.Time.Gregorian;
 
 class ClockView extends WatchUi.View {
   private static var _instance as ClockView?;
-  private var _updateTimer;
   private var _messageManager;
   private var logger;
 
@@ -27,48 +26,21 @@ class ClockView extends WatchUi.View {
     return _instance;
   }
 
-  function stopClock() as Void {
-    if (_updateTimer != null) {
-      _updateTimer.stop();
-      _updateTimer = null;
-    }
-  }
-
-  function startClock() as Void {
-    onShow(); // This re-initializes the timer
-  }
-
-  function getUpdateTimer() {
-    if (_updateTimer == null) {
-      _updateTimer = new Timer.Timer();
-    }
-    return _updateTimer;
-  }
-
   function onLayout(dc as Graphics.Dc) as Void {
     logger.debug("ClockView", "=== ClockView onLayout ===");
   }
 
+  function onUpdateHeartbeat() {
+    WatchUi.requestUpdate();
+  }
+
   function onShow() as Void {
-    _updateTimer = getUpdateTimer();
-    logger.debug("ClockView", "=== ClockView onShow === start 1 second timer");
-    // Update every 1000ms (1 second)
-    _updateTimer.start(method(:onTimer), 1000, true);
+    logger.debug("ClockView", "=== ClockView onShow ===");
   }
 
   // This is called when the view is hidden/closed
   function onHide() {
-    logger.debug("ClockView", "=== ClockView onHide === stop 1 second timer");
-    if (_updateTimer != null) {
-      _updateTimer.stop();
-      _updateTimer = null;
-    }
-  }
-
-  function onTimer() as Void {
-    logger.trace("ClockView", "=== onTimer === requesting update");
-    // Request the UI to call onUpdate()
-    WatchUi.requestUpdate();
+    logger.debug("ClockView", "=== ClockView onHide ===");
   }
 
   function onUpdate(dc as Graphics.Dc) as Void {

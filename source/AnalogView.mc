@@ -9,9 +9,7 @@ using Toybox.Application.Properties;
 
 class AnalogView extends WatchUi.View {
   private static var _instance as AnalogView?;
-  static var ID = "Watch01";
   private var logger;
-  private var _updateTimer;
   private var propertieUtility;
 
   private var radius = 0;
@@ -50,7 +48,7 @@ class AnalogView extends WatchUi.View {
     logger = getLogger();
     propertieUtility = getPropertieUtility();
     logger.debug("AnalogView", "Initializing AnalogView");
-    
+
     // Load settings immediately on startup
     updateSettings();
   }
@@ -63,53 +61,30 @@ class AnalogView extends WatchUi.View {
     return _instance;
   }
 
-  function stopClock() as Void {
-    if (_updateTimer != null) {
-      _updateTimer.stop();
-      _updateTimer = null;
-    }
-  }
-
-  function startClock() as Void {
-    onShow(); // This re-initializes the timer
+  function onUpdateHeartbeat() {
+    WatchUi.requestUpdate();
   }
 
   function onShow() as Void {
-    _updateTimer = getUpdateTimer();
-    logger.debug("AnalogView", "=== AnalogView onShow === start 1 second timer");
-    // Update every 1000ms (1 second)
-    _updateTimer.start(method(:onTimer), 1000, true);
+    logger.debug("AnalogView", "=== AnalogView onShow ===");
   }
 
   // This is called when the view is hidden/closed
   function onHide() {
-    logger.debug("AnalogView", "=== AnalogView onHide === stop 1 second timer");
-    stopClock();
-  }
-
-  function onTimer() as Void {
-    logger.trace("AnalogView", "=== onTimer === requesting update");
-    // Request the UI to call onUpdate()
-    WatchUi.requestUpdate();
-  }
-
-  function getUpdateTimer() {
-    if (_updateTimer == null) {
-      _updateTimer = new Timer.Timer();
-    }
-    return _updateTimer;
+    logger.debug("AnalogView", "=== AnalogView onHide");
   }
 
   public function updateSettings() {
-    logger.debug("AnalogView", "Updatesettings AnalogView");
+    logger.debug("AnalogView", "==== Updatesettings AnalogView ====");
 
     // applyClassicProfile(); // Set defaults first to make sure all values are set
 
     var profile = propertieUtility.getPropertyNumber("ColorProfile", 0);
     logger.debug(
       "AnalogView",
-      "Initialize AnalogView - Update every second: " +
-        updateEverySecond.toString()
+      "==== Initialize AnalogView - Update every second: " +
+        updateEverySecond.toString() +
+        " ===="
     );
     updateEverySecond = propertieUtility.getPropertyBoolean(
       "UpdateSeconds",
@@ -117,8 +92,9 @@ class AnalogView extends WatchUi.View {
     );
     logger.debug(
       "AnalogView",
-      "Initialize AnalogView - Update every second: " +
-        updateEverySecond.toString()
+      "==== Initialize AnalogView - Update every second: " +
+        updateEverySecond.toString() +
+        " ===="
     );
 
     if (profile == null) {
@@ -127,7 +103,9 @@ class AnalogView extends WatchUi.View {
 
     logger.debug(
       "AnalogView",
-      "Initializing AnalogView with profile: " + profile.toString()
+      "==== Initializing AnalogView with profile: " +
+        profile.toString() +
+        " ===="
     );
 
     // Apply predefined profile or load custom values
@@ -147,7 +125,7 @@ class AnalogView extends WatchUi.View {
   }
 
   private function applyClassicProfile() {
-    logger.debug("AnalogView", "Applying Classic Profile");
+    logger.debug("AnalogView", "=== Applying Classic Profile ===");
     handbgcolor = 0x504949; // Dark gray
     handfgcolor = 0xff0000; // Red
     facebgcolor = 0x000000; // Black
@@ -163,7 +141,7 @@ class AnalogView extends WatchUi.View {
   }
 
   private function applyBlueSteelProfile() {
-    logger.debug("AnalogView", "Applying Blue Steel Profile");
+    logger.debug("AnalogView", "=== Applying Blue Steel Profile ===");
     handbgcolor = 0x2c3e50; // Dark blue-gray
     handfgcolor = 0x3498db; // Bright blue
     facebgcolor = 0x000000; // Black
@@ -179,7 +157,7 @@ class AnalogView extends WatchUi.View {
   }
 
   private function applyGreenNatureProfile() {
-    logger.debug("AnalogView", "Applying Green Nature Profile");
+    logger.debug("AnalogView", "=== Applying Green Nature Profile ===");
     handbgcolor = 0x27371f; // Dark green
     handfgcolor = 0x7cb342; // Bright green
     facebgcolor = 0x000000; // Black
@@ -195,7 +173,7 @@ class AnalogView extends WatchUi.View {
   }
 
   private function applyGoldLuxuryProfile() {
-    logger.debug("AnalogView", "Applying Gold Luxury Profile");
+    logger.debug("AnalogView", "=== Applying Gold Luxury Profile ===");
     handbgcolor = 0x3e2723; // Dark brown
     handfgcolor = 0xffd700; // Gold
     facebgcolor = 0x000000; // Black
@@ -211,7 +189,7 @@ class AnalogView extends WatchUi.View {
   }
 
   private function loadCustomColors() {
-    logger.debug("AnalogView", "Loading custom colors from properties");
+    logger.debug("AnalogView", "=== Loading custom colors from properties ===");
     // Load each color from properties
     handbgcolor = propertieUtility.getPropertyNumber("HandBgColor", 0x504949);
     handfgcolor = propertieUtility.getPropertyNumber("HandFgColor", 0xff0000);
@@ -246,7 +224,7 @@ class AnalogView extends WatchUi.View {
   }
 
   function onLayout(dc) {
-    logger.debug("AnalogView", "Layout AnalogView");
+    logger.debug("AnalogView", "=== Layout AnalogView ===");
     centerX = dc.getWidth() / 2;
     centerY = dc.getHeight() / 2;
     var minDimension = centerX < centerY ? centerX : centerY;
@@ -254,11 +232,12 @@ class AnalogView extends WatchUi.View {
   }
 
   function onUpdate(dc) {
-    logger.debug("AnalogView", "Updating AnalogView display");
+    logger.trace("AnalogView", "=== AnalogView onUpdate ===");
+
     if (centerX == 0 || centerY == 0) {
-        onLayout(dc); // Safety fallback
+      onLayout(dc); // Safety fallback
     }
-    
+
     dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
     dc.clear();
 
@@ -572,11 +551,11 @@ class AnalogView extends WatchUi.View {
   }
 
   function onEnterSleep() {
-    logger.debug("AnalogView", "Entering sleep mode");
+    logger.debug("AnalogView", "=== Entering sleep mode ===");
   }
 
   function onExitSleep() {
-    logger.debug("AnalogView", "Exiting sleep mode");
+    logger.debug("AnalogView", "=== Exiting sleep mode ===");
   }
 }
 

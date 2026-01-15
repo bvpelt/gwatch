@@ -8,24 +8,22 @@ class MessengerApp extends Application.AppBase {
   private var _analogView;
   private var _messagesView;
   private var _messageManager;
-  private var _syncTimer;
+  private var _heartbeatTimer;
   private var _delegate;
   private var logger;
+  private var propertieUtility;
   private var currentView;
-
-  function getUpdateTimer() {
-    if (_syncTimer == null) {
-      _syncTimer = new Timer.Timer();
-    }
-    return _syncTimer;
-  }
 
   function initialize() {
     logger = getLogger();
+    propertieUtility = getPropertieUtility();
     logger.debug("MessengerApp", "=== MessengerApp initialize START ===");
 
-    var minimumDebugLevel =
-      Application.Properties.getValue("MinimalDebugLevel");
+    var minimumDebugLevel = propertieUtility.getPropertyNumber(
+      "MinimalDebugLevel",
+      0
+    );
+
     if (minimumDebugLevel != null) {
       logger.info(
         "MessengerApp",
@@ -53,56 +51,23 @@ class MessengerApp extends Application.AppBase {
 
   function onStart(state as Lang.Dictionary?) as Void {
     logger.debug("MessengerApp", "=== onStart ===");
+    _heartbeatTimer = new Timer.Timer();
+
     // Register for communication events
     Communications.registerForPhoneAppMessages(method(:onPhoneAppMessage));
 
     // Request initial sync from phone
     _messageManager.updateConnectionStatus(MessageManager.STATUS_CONNECTING);
 
-    // Delay the sync request by 3 second to let the Simulator stabilize (due to simulator startup timing issues)
-    _syncTimer = getUpdateTimer();
-    _syncTimer.start(method(:triggerInitialSync), 3000, false);
+    _heartbeatTimer.start(method(:onHeartbeat), 1000, true);
   }
 
-   function cancelSyncTimer() as Void {
-    if (_syncTimer != null) {
-      _syncTimer.stop();
-      _syncTimer = null;
-      logger.debug("MessengerApp", "Sync timer cancelled for safety");
-    }
-  }
+  function onHeartbeat() as Void {
+    var currentView = WatchUi.getCurrentView()[0];
 
-  function triggerInitialSync() as Void {
-    logger.debug("MessengerApp", "=== Delayed Sync Triggered ===");
-
-    // 1. FIX: Stop WHATEVER view is currently active, not just clockView
-    var currentView = WatchUi.getCurrentView();
-    if (currentView == null) { return; }
-    if (currentView != null && currentView[0] has :stopClock) {
-      currentView[0].stopClock();
-    }
-
-    // 2. Clear the screen to a blank state to stop GFX processing
-    WatchUi.requestUpdate();
-
-    // 3. Wait 200ms for GFX to settle, THEN transmit
-    var settleTimer = new Timer.Timer();
-    settleTimer.start(method(:executeTransmit), 500, false);
-  }
-
-  function executeTransmit() as Void {
-    if (System.getDeviceSettings().phoneConnected) {
-      _messageManager.requestSync();
-    }
-
-    // 4. Wait 1 second for the network burst to finish before restarting UI
-    var restartTimer = new Timer.Timer();
-    restartTimer.start(method(:resumeUI), 1000, false);
-  }
-
-  function resumeUI() as Void {
-    if (_clockView != null) {
-      _clockView.onShow();
+    // Check if the current view wants a heartbeat
+    if (currentView != null && currentView has :onUpdateHeartbeat) {
+      currentView.onUpdateHeartbeat();
     }
   }
 
@@ -194,8 +159,6 @@ class MessengerApp extends Application.AppBase {
     _messageManager.handlePhoneMessage(msg);
     WatchUi.requestUpdate();
   }
-
- 
 }
 
 function getApp() as MessengerApp {
