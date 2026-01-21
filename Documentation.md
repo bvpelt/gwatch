@@ -88,6 +88,27 @@ Starting bridge server on http://localhost:5000
  popd
 ```
 
+
+# Git
+
+```bash
+# Create and switch to feature branch (if not already on one)
+git checkout -b feature/reactive-improvements
+
+# Commit your changes
+git add .
+git commit -m "Add reactive Spring Boot improvements"
+
+# Push the feature branch
+git push origin feature/reactive-improvements
+
+# Create a tag for this feature
+git tag -a v1.0-reactive-feature -m "Reactive Spring Boot feature implementation"
+
+# Push the tag
+git push origin v1.0-reactive-feature
+```
+
 # Submit app
 
 Use Monkey C: Export to create a .iq file for all supported devices
