@@ -1,4 +1,7 @@
+# Set the manifest file
 project.manifest = manifest.xml
 
+# Explicitly include the settings subfolder if it's not being picked up
+base.sourcePath = source
 base.resourcePath = resources
-base.sourcePath = source 
+#base.resourcePath = $(base.resourcePath);resources/strings;resources;resources/properties;resources/settings

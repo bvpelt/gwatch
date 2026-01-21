@@ -87,3 +87,9 @@ Starting bridge server on http://localhost:5000
  ^C
  popd
 ```
+
+# Submit app
+
+Use Monkey C: Export to create a .iq file for all supported devices
+
+Submit file using [link](https://apps.garmin.com/en-US/developer/upload)

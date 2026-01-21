@@ -17,20 +17,13 @@ clean: kill-simulator
 	find . -name "*.iq" -delete
 
 build:
-	@echo "Building..."
+	@echo "Building prg..."
 	monkeyc -o build/$(APP_NAME).prg -f monkey.jungle -y $(KEY) -d $(DEVICE) -w
-
 
 run: build
 	@echo "Running in simulator..."
 	pgrep simulator >/dev/null || connectiq &
 	sleep 5
-	#export LIBGL_ALWAYS_SOFTWARE=1 && \
-	#export GDK_BACKEND=x11 && \
-	#export NO_AT_BRIDGE=1 && \
-	#export GTK_PATH="" && \
-	#export NO_GAIL=1 && \
-	#export NO_AT_SPI=1 && \
 	monkeydo build/MessengerApp.prg fr165
 
 clean-storage: clean

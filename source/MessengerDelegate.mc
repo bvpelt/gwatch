@@ -1,6 +1,7 @@
 using Toybox.WatchUi;
 using Toybox.System;
 using Toybox.Lang;
+using Toybox.Communications;
 
 class MessengerDelegate extends WatchUi.BehaviorDelegate {
   private static var _instance as MessengerDelegate?;
@@ -212,10 +213,11 @@ function getMessengerDelegate() as MessengerDelegate {
 }
 
 // Helper class for testing
-class TestPhoneAppMessage {
+class TestPhoneAppMessage extends Communications.PhoneAppMessage {
   public var data;
 
   function initialize(d as Lang.Dictionary) {
+    PhoneAppMessage.initialize();
     data = d;
   }
 }

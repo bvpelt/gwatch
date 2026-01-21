@@ -1,4 +1,9 @@
 <properties>
+    <!-- 
+    0: Messages
+    1: Clock
+    2: AnalogClock
+    -->
     <property id="DefaultView" type="number">0</property>
     <property id="ShowNotifications" type="boolean">true</property>
     <property id="MessageLimit" type="number">30</property>
@@ -11,7 +16,6 @@
     LEVEL_ERROR = 4,
     -->
     <property id="MinimalDebugLevel" type="number">0</property>
-
 
     <!-- Profile selector -->
     <property id="ColorProfile" type="number">0</property>

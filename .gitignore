@@ -7,6 +7,7 @@ pyutil/.venv
 gen/
 internal-mir/
 mir/
+export/
 
 gwatch-settings.json
 gwatch.prg.debug.xml

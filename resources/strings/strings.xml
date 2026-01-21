@@ -1,4 +1,4 @@
-<strings>
+<strings xmlns:settings="http://www.garmin.com/xml/connectiq">
     <string id="AppName">Messenger Watch</string>
 
     <!-- View names -->
@@ -14,6 +14,7 @@
     <!-- Settings -->
     <string id="ViewModeTitle">Default View</string>
     <string id="ViewModeClock">Clock</string>
+    <string id="ViewModeAnalogClock">Analog Clock</string>
     <string id="ViewModeMessages">Messages</string>
 
     <string id="ShowNotificationsTitle">Show Notifications</string>

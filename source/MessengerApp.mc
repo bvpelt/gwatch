@@ -71,6 +71,22 @@ class MessengerApp extends Application.AppBase {
     }
   }
 
+  function onSettingsChanged() {
+    logger.info("MessengerApp", "=== Settings changed by user ===");
+
+    // 1. Update the IsCustomProfile logic
+    var profile = Application.Properties.getValue("ColorProfile");
+    // If profile is 4 (Custom), set the hidden property to true
+    Application.Properties.setValue("IsCustomProfile", profile == 4);
+
+    // 2. Tell the active views to refresh their colors/settings
+    // Since we use Singletons, we can call them directly
+    getAnalogView().updateSettings();
+
+    // 3. Force a UI refresh
+    WatchUi.requestUpdate();
+  }
+
   function onStop(state as Lang.Dictionary?) as Void {
     logger.debug("MessengerApp", "=== onStop ===");
 

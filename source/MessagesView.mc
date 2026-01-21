@@ -73,7 +73,7 @@ class MessagesView extends WatchUi.View {
 
   private function drawMessages(
     dc as Graphics.Dc,
-    messages as Lang.Array,
+    messages as Lang.Array<Lang.Dictionary>,
     offset as Lang.Number,
     width as Lang.Number,
     height as Lang.Number
