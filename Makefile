@@ -24,7 +24,7 @@ run: build
 	@echo "Running in simulator..."
 	pgrep simulator >/dev/null || connectiq &
 	sleep 5
-	monkeydo build/MessengerApp.prg fr165
+	monkeydo build/MessengerApp.prg ${DEVICE}
 
 clean-storage: clean
 	@echo "Cleaning simulator storage..."

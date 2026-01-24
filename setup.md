@@ -1,5 +1,37 @@
 # Setup a new project
 
+## Visual code
+
+### Install monkey c extension from garmin
+- Set path to developer_key
+- Set path to java
+
+In my case
+![monkey c extension settings](./images/monkey-c-extension-settings.png)
+
+### Install custom formatter van killian
+
+Setting.json
+```json
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "customLocalFormatters.formatters": [
+    {
+      "command": "clang-format -style=file --assume-filename=test.java",
+      "languages": ["monkeyc"],
+    },
+  ],
+  "[monkeyc]": {
+    "editor.defaultFormatter": "jkillian.custom-local-formatters",
+    "editor.formatOnSave": true,
+  },
+  "monkeyC.developerKeyPath": "/home/bvpelt/.Garmin/developer_key",
+  "monkeyC.developerId": "bvpelt",
+  "monkeyC.javaPath": "/usr/lib/jvm/java-21-openjdk-amd64/",
+  "liveServer.settings.donotShowInfoMsg": true,
+}
+```
+
 ## Create directory structure
 
 ```bash

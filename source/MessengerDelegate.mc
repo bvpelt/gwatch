@@ -9,6 +9,7 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
   private var logger;
   private var propertieUtility;
   private var currentWatchView as Lang.Integer;
+  private var _activeView; 
 
   // Private constructor
   private function initialize(messageManager as MessageManager) {
@@ -17,6 +18,15 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
     currentWatchView = propertieUtility.getPropertyNumber("DefaultView", 0);
     BehaviorDelegate.initialize();
     _messageManager = getMessageManager();
+    _activeView = getActiveView();
+    logger.debug(
+      "MessengerDelegate",
+      "=== MessengerDelegate initialized with default view: _activeView from app" 
+    );
+  }
+
+  private function getActiveView() {
+    return getApp().getActiveView();
   }
 
   // Get singleton instance
@@ -42,17 +52,29 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
       return true;
     } else if (key == WatchUi.KEY_UP) {
       // Scroll up in messages view
+      /*
       var currentView = WatchUi.getCurrentView();
       if (currentView[0] instanceof MessagesView) {
         (currentView[0] as MessagesView).scroll(-1);
         return true;
       }
+      */
+      if (_activeView != null && _activeView instanceof MessagesView) {
+        (_activeView as MessagesView).scroll(-1);
+        return true;
+      }
     } else if (key == WatchUi.KEY_DOWN) {
       // Scroll down in messages view
+      /*
       var currentView = WatchUi.getCurrentView();
       if (currentView[0] instanceof MessagesView) {
         (currentView[0] as MessagesView).scroll(1);
         return true;
+      }
+      */
+      if (_activeView != null && _activeView instanceof MessagesView) {
+        (_activeView as MessagesView).scroll(1);
+        return true;    
       }
     }
 
@@ -96,22 +118,33 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
 
   function onSwipe(swipeEvent as WatchUi.SwipeEvent) as Lang.Boolean {
     var direction = swipeEvent.getDirection();
-    var currentView = WatchUi.getCurrentView();
+    //var currentView = WatchUi.getCurrentView();
+    if (_activeView == null) {
+      _activeView = getActiveView();
+    }
 
+    if (_activeView == null) {
+      logger.debug("MessengerDelegate", "No active view detected on swipe");
+      return false;
+    }
+    
     logger.debug("MessengerDelegate", "Swipe detected: " + direction);
 
     // Check if we're in Messages view
-    if (currentView[0] instanceof MessagesView) {
+    if (_activeView instanceof MessagesView) {
+      // _activeView == MessagesView
       // currentWatchView == 0
+      // swipe left -> AnalogView (2)
+      // swipe right -> ClockView (1)
       if (direction == WatchUi.SWIPE_UP) {
         // Scroll up (show older messages)
         logger.debug("MessengerDelegate", "Scrolling up in messages");
-        (currentView[0] as MessagesView).scroll(-1);
+        (_activeView as MessagesView).scroll(-1);
         return true;
       } else if (direction == WatchUi.SWIPE_DOWN) {
         // Scroll down (show newer messages)
         logger.debug("MessengerDelegate", "Scrolling down in messages");
-        (currentView[0] as MessagesView).scroll(1);
+        (_activeView as MessagesView).scroll(1);
         return true;
       } else if (direction == WatchUi.SWIPE_LEFT) {
         currentWatchView = 2; // AnalogView  0 -> 2
@@ -120,7 +153,7 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
           "MessengerDelegate",
           "Swipe left - switching to Clock view"
         );
-        switchView(currentWatchView);
+        switchView(currentWatchView, direction);
         return true;
       } else if (direction == WatchUi.SWIPE_RIGHT) {
         currentWatchView = 1; // Switch to ClockView 0 -> 1
@@ -128,35 +161,37 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
           "MessengerDelegate",
           "Swipe right - switching to Analog view"
         );
-        switchView(currentWatchView);
+        switchView(currentWatchView, direction);
         return true;
       }
-    } else if (currentView[0] instanceof ClockView) {
+    } else if (_activeView instanceof ClockView) {
       // currentWatchView == 1
-      // In Clock view, swipe left or right to go to Messages
+      // swipe left -> MessagesView (0)
+      // swipe right -> AnalogView (2)
       if (direction == WatchUi.SWIPE_LEFT) {
         currentWatchView = 0; // 1 -> 0
         logger.debug("MessengerDelegate", "Swipe - switching to Message view");
-        switchView(currentWatchView);
+        switchView(currentWatchView, direction);
         return true;
       } else if (direction == WatchUi.SWIPE_RIGHT) {
         currentWatchView = 2; // 1 -> 2
         logger.debug("MessengerDelegate", "Swipe - switching to Analog view");
-        switchView(currentWatchView);
+        switchView(currentWatchView, direction);
         return true;
       }
-    } else if (currentView[0] instanceof AnalogView) {
+    } else if (_activeView instanceof AnalogView) {
       // currentWatchView == 2
-      // In Clock view, swipe left or right to go to Messages
+      // swipe left -> MessagesView (1)
+      // swipe right -> AnalogView (0)
       if (direction == WatchUi.SWIPE_LEFT) {
         currentWatchView = 1; // 2 -> 1
         logger.debug("MessengerDelegate", "Swipe - switching to Clock view");
-        switchView(currentWatchView);
+        switchView(currentWatchView, direction);
         return true;
       } else if (direction == WatchUi.SWIPE_RIGHT) {
         currentWatchView = 0; // 2 -> 0
         logger.debug("MessengerDelegate", "Swipe - switching to Messages view");
-        switchView(currentWatchView);
+        switchView(currentWatchView, direction);
         return true;
       }
     }
@@ -181,29 +216,30 @@ class MessengerDelegate extends WatchUi.BehaviorDelegate {
         nextView = getMessagesView();
     }
 
+    // SLIDE_IMMEDIATE can sometimes be too fast for the Linux Sim.
+    // SLIDE_LEFT/RIGHT is actually more stable as it forces a formal transition.
     WatchUi.switchToView(nextView, self, WatchUi.SLIDE_IMMEDIATE);
   }
 
-  private function switchView(viewType as Lang.Number) as Void {
+   private function switchView(viewType as Lang.Number, direction) as Void {
 
-    var nextView;
     switch (viewType) {
       case 0:
-        nextView = getMessagesView();
+        _activeView = getMessagesView();
         break;
       case 1:
-        nextView = getClockView();
+        _activeView = getClockView();
         break;
       case 2:
-        nextView = getAnalogView();
+        _activeView = getAnalogView();
         break;
       default:
-        nextView = getMessagesView();
+        _activeView = getMessagesView();
     }
 
     // SLIDE_IMMEDIATE can sometimes be too fast for the Linux Sim.
     // SLIDE_LEFT/RIGHT is actually more stable as it forces a formal transition.
-    WatchUi.switchToView(nextView, self, WatchUi.SLIDE_IMMEDIATE);
+    WatchUi.switchToView(_activeView, self, direction);
   }
 }
 

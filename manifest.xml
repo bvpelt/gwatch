@@ -3,7 +3,6 @@
     <iq:application id="1d7dd72a-3ab9-46fa-827e-9b926cefec91" type="watch-app" name="@Strings.AppName" entry="MessengerApp" launcherIcon="@Drawables.LauncherIcon" minApiLevel="3.2.0">
         <iq:products>
             <iq:product id="fr165"/>
-            <iq:product id="fr245"/>
             <iq:product id="fr255"/>
             <iq:product id="fr265"/>
             <iq:product id="fr955"/>
