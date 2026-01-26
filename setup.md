@@ -10,6 +10,62 @@ In my case
 ![monkey c extension settings](./images/monkey-c-extension-settings.png)
 
 ### Install custom formatter van killian
+This makes it possible to use a custom formatter. In this case clang-format.
+This works by using:
+- clang-format on ubuntu
+- the visual code extension Clang-Format by xaver.clang-format
+
+**Install clang-format on ubuntu**
+```bash
+sudo apt install clang-format
+```
+
+**Install Clang-Format extension in visual code**
+
+Define a configuration file [.clang-format](./.clang-format) with content
+```text
+Language: Java
+BasedOnStyle: Google
+
+# Indentation
+IndentWidth: 4
+ContinuationIndentWidth: 4
+ColumnLimit: 100
+
+# Braces
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: Never
+  AfterFunction: true
+  AfterNamespace: true
+  AfterObjCDeclaration: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+
+# Spacing
+SpaceBeforeParens: Always
+SpaceInEmptyParentheses: false
+SpacesInAngles: false
+SpaceAfterCStyleCast: true
+
+# Alignment
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignOperands: true
+
+# Monkey C specific "Short" syntax handling
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+
+# Sort using statements (equivalent to imports)
+SortIncludes: true
+```
 
 Setting.json
 ```json
