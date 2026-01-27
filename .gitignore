@@ -9,5 +9,6 @@ internal-mir/
 mir/
 export/
 
+*.prg
 gwatch-settings.json
 gwatch.prg.debug.xml
