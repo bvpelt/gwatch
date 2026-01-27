@@ -22,52 +22,12 @@ sudo apt install clang-format
 
 **Install Clang-Format extension in visual code**
 
-Define a configuration file [.clang-format](./.clang-format) with content
-```text
-Language: Java
-BasedOnStyle: Google
+Define a configuration file [.clang-format](./.clang-format) 
 
-# Indentation
-IndentWidth: 4
-ContinuationIndentWidth: 4
-ColumnLimit: 100
+Update setting.json 
 
-# Braces
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterClass: true
-  AfterControlStatement: Never
-  AfterFunction: true
-  AfterNamespace: true
-  AfterObjCDeclaration: true
-  AfterStruct: true
-  AfterUnion: true
-  AfterExternBlock: false
-  BeforeCatch: false
-  BeforeElse: false
-  IndentBraces: false
+Control-Shift-P `Preferences: Open User Settings (Json)`
 
-# Spacing
-SpaceBeforeParens: Always
-SpaceInEmptyParentheses: false
-SpacesInAngles: false
-SpaceAfterCStyleCast: true
-
-# Alignment
-AlignAfterOpenBracket: Align
-AlignConsecutiveAssignments: false
-AlignOperands: true
-
-# Monkey C specific "Short" syntax handling
-AllowShortFunctionsOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: false
-AllowShortLoopsOnASingleLine: false
-
-# Sort using statements (equivalent to imports)
-SortIncludes: true
-```
-
-Setting.json
 ```json
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
