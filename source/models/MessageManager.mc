@@ -190,37 +190,42 @@ class MessageManager
         }
     }
 
-    function addTestMessage () as Void {
-    var testMessages = [
-        {"sender" => "Alice", "text" => "Hey, how are you?"},
-        {"sender" => "Bob", "text" => "Meeting at 3pm"},
-        {"sender" => "Charlie", "text" => "Don't forget to buy milk"},
-        {"sender" => "Diana", "text" => "Running 5 minutes late"},
-        {"sender" => "Eve", "text" => "Great job on the presentation!"},
-        {"sender" => "Frank", "text" => "Can you call me back?"},
-        {"sender" => "Grace", "text" => "Lunch tomorrow?"},
-        {"sender" => "Henry", "text" => "Check your email"},
-        {"sender" => "Iris", "text" => "Project deadline tomorrow"},
-        {"sender" => "Jack", "text" => "Thanks for your help!"},
-    ];
+    public function addTestMessage () as Void {
+        var testMessages = [
+            {"sender" => "Alice", "text" => "Hey, how are you?"},
+            {"sender" => "Bob", "text" => "Meeting at 3pm"},
+            {"sender" => "Charlie", "text" => "Don't forget to buy milk"},
+            {"sender" => "Diana", "text" => "Running 5 minutes late"},
+            {"sender" => "Eve", "text" => "Great job on the presentation!"},
+            {"sender" => "Frank", "text" => "Can you call me back?"},
+            {"sender" => "Grace", "text" => "Lunch tomorrow?"},
+            {"sender" => "Henry", "text" => "Check your email"},
+            {"sender" => "Iris", "text" => "Project deadline tomorrow"},
+            {"sender" => "Karl", "text" => "You were realy helpfull"},
+            {"sender" => "Liam", "text" => "Macbeth is the best"},
+            {"sender" => "Mick", "text" => "There is no end to the universe"},
+            {"sender" => "Nigel", "text" => "Who should I thank"},
+            {"sender" => "Odin", "text" => "Yesterday is a long time ago"},
+            {"sender" => "Paul", "text" => "The apprentice succeeded"},
+        ];
 
-    // Pick a random message
-    var index = (System.getTimer () / 1000) % testMessages.size ();
-    var testMsg = testMessages[index];
+        // Pick a random message
+        var index = (System.getTimer () / 1000) % testMessages.size ();
+        var testMsg = testMessages[index];
 
-    var message = {
-        "type" => "message",
-        "sender" => testMsg["sender"],
-        "text" => testMsg["text"],
-    };
+        var message = {
+            "type" => "message",
+            "sender" => testMsg["sender"],
+            "text" => testMsg["text"],
+        };
 
-    // Create a test phone message object
-    var phoneMsg = new TestPhoneAppMessage (message);
-    handlePhoneMessage (phoneMsg);
+        // Create a test phone message object
+        var phoneMsg = new TestPhoneAppMessage (message);
+        handlePhoneMessage (phoneMsg);
 
-    _logger.debug ("MessengerDelegate", "Test message added from: " + testMsg["sender"]);
-    WatchUi.requestUpdate ();
-}
+        _logger.debug ("MessengerDelegate", "addTestMessage from: " + testMsg["sender"]);
+        WatchUi.requestUpdate ();
+    }
 }
 
 class CommListener extends Communications.ConnectionListener

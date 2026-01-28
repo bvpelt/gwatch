@@ -15,7 +15,6 @@ class AnalogViewDelegate extends WatchUi.BehaviorDelegate
     }
 
     // Start button - go to AnalogView (replaces swipe left)
-    // From Messages: go to Analog
     function onSelect()
     {
         WatchUi.switchToView(new ClockView(getMessageManager()), new ClockViewDelegate(),
@@ -24,7 +23,6 @@ class AnalogViewDelegate extends WatchUi.BehaviorDelegate
     }
 
     // Back button - go to ClockView (replaces swipe right)
-    // From Messages: go to Clock
     function onBack()
     {
         var messageView = new MessagesView(getMessageManager());
@@ -37,8 +35,6 @@ class AnalogViewDelegate extends WatchUi.BehaviorDelegate
     {
         var direction = swipeEvent.getDirection();
 
-        // swipe left -> MessagesView (1)
-        // swipe right -> AnalogView (0)
         if (direction == WatchUi.SWIPE_LEFT) {
             _logger.debug("AnalogViewDelegate", "Swipe - switching to Clock view");
 

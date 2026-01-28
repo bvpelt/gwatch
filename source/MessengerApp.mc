@@ -118,7 +118,7 @@ class MessengerApp extends Application.AppBase
                     ] as [WatchUi.Views, WatchUi.InputDelegates]);
 
                 default:
-                    _logger.debug("MessengerApp", "=== Returning MessagesView ===");
+                    _logger.debug("MessengerApp", "=== Returning default MessagesView ===");
                     var messageView1 = new MessagesView(getMessageManager());
                     return ([
                         messageView1, new MessagesViewDelegate(messageView1)
@@ -128,8 +128,10 @@ class MessengerApp extends Application.AppBase
         } catch (ex) {
             _logger.debug("MessengerApp", "ERROR in getInitialView: " + ex.getErrorMessage());
             // Return a minimal view as fallback
-            return ([ new ClockView(getMessageManager()),
-                      new ClockViewDelegate() ] as [WatchUi.Views, WatchUi.InputDelegates]);
+            _logger.debug("MessengerApp", "=== Returning MessagesView as fallback ===");
+            var messageView = new MessagesView(getMessageManager());
+            return ([ messageView, new MessagesViewDelegate(
+                                       messageView) ] as [WatchUi.Views, WatchUi.InputDelegates]);
         }
     }
 
