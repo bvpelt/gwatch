@@ -199,3 +199,15 @@ pip install pip-tools
 pip install flask
 pip install flask_cors
 ```
+
+# Testing
+
+With the simulator use Simulation -> Phone App Message send a message
+
+```json
+{
+   "type": "message",
+   "sender": "bart",
+   "text": "message 01"
+}
+```

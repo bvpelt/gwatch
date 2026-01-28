@@ -5,12 +5,6 @@ using Toybox.Communications;
 
 class MessengerApp extends Application.AppBase
 {
-    private var _clockView;
-    private var _clockViewDelegate;
-    private var _analogView;
-    private var _analogViewDelegate;
-    private var _messagesView;
-    private var _messagesViewDelegate;
     private var _messageManager;
     private var _heartbeatTimer;
 
@@ -40,13 +34,6 @@ class MessengerApp extends Application.AppBase
 
         _logger.debug("MessengerApp", "=== Creating MessageManager ===");
         _messageManager = getMessageManager();
-
-        _analogView = new AnalogView();
-        _analogViewDelegate = new AnalogViewDelegate();
-        _clockView = new ClockView(getMessageManager());
-        _clockViewDelegate = new ClockViewDelegate();
-        _messagesView = new MessagesView(getMessageManager());
-        _messagesViewDelegate = new MessagesViewDelegate(_messagesView);
 
         _logger.debug("MessengerApp", "=== MessengerApp initialize COMPLETE ===");
     }
@@ -83,7 +70,7 @@ class MessengerApp extends Application.AppBase
 
         // 2. Tell the active views to refresh their colors/settings
         // Since we use Singletons, we can call them directly
-        _analogView.updateSettings();
+        new AnalogView().updateSettings();
 
         // 3. Force a UI refresh
         WatchUi.requestUpdate();
@@ -112,35 +99,37 @@ class MessengerApp extends Application.AppBase
             switch (defaultView) {
                 case 0:
                     _logger.debug("MessengerApp", "=== Returning MessagesView ===");
-                    //_activeView = _messagesView; // ADD THIS: Track active view
-                    return ([ _messagesView,
-                              _messagesViewDelegate ] as [WatchUi.Views, WatchUi.InputDelegates]);
+                    var messageView = new MessagesView(getMessageManager());
+                    return ([
+                        messageView, new MessagesViewDelegate(messageView)
+                    ] as [WatchUi.Views, WatchUi.InputDelegates]);
 
                 case 1:
                     _logger.debug("MessengerApp", "=== Returning ClockView ===");
-                    //_activeView = _clockView; // ADD THIS: Track active view
-                    return ([ _clockView,
-                              _clockViewDelegate ] as [WatchUi.Views, WatchUi.InputDelegates]);
+
+                    return ([ new ClockView(getMessageManager()),
+                              new ClockViewDelegate() ] as [WatchUi.Views, WatchUi.InputDelegates]);
 
                 case 2:
                     _logger.debug("MessengerApp", "=== Returning AnalogView ===");
-                    //_activeView = _analogView; // ADD THIS: Track active view
 
-                    return ([ _analogView,
-                              _analogViewDelegate ] as [WatchUi.Views, WatchUi.InputDelegates]);
+                    return ([
+                        new AnalogView(), new AnalogViewDelegate()
+                    ] as [WatchUi.Views, WatchUi.InputDelegates]);
 
                 default:
                     _logger.debug("MessengerApp", "=== Returning MessagesView ===");
-                    //_activeView = _messagesView; // ADD THIS: Track active view
-
-                    return ([ _messagesView,
-                              _messagesViewDelegate ] as [WatchUi.Views, WatchUi.InputDelegates]);
+                    var messageView1 = new MessagesView(getMessageManager());
+                    return ([
+                        messageView1, new MessagesViewDelegate(messageView1)
+                    ] as [WatchUi.Views, WatchUi.InputDelegates]);
             }
 
         } catch (ex) {
             _logger.debug("MessengerApp", "ERROR in getInitialView: " + ex.getErrorMessage());
             // Return a minimal view as fallback
-            return ([ _clockView, _clockViewDelegate ] as [WatchUi.Views, WatchUi.InputDelegates]);
+            return ([ new ClockView(getMessageManager()),
+                      new ClockViewDelegate() ] as [WatchUi.Views, WatchUi.InputDelegates]);
         }
     }
 
