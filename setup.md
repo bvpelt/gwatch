@@ -211,3 +211,11 @@ With the simulator use Simulation -> Phone App Message send a message
    "text": "message 01"
 }
 ```
+
+# formatting
+Format all files using clang-format
+
+```bash
+# This finds all .mc files and formats them in-place using your config
+find . -name "*.mc" -exec clang-format -i -style=file --assume-filename=test.cs {} +
+```
