@@ -1,0 +1,43 @@
+Language: JavaScript
+BasedOnStyle: Google
+
+# Indentation
+IndentWidth: 4
+ContinuationIndentWidth: 4
+ColumnLimit: 100
+
+# Fix for the "Shifting" issue
+AccessModifierOffset: -4
+IndentAccessModifiers: false
+
+# Quote Style
+JavaScriptQuotes: Double
+
+# Braces
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: Never
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+
+# Spacing
+SpaceBeforeAssignmentOperators: true
+SpacesInContainerLiterals: true
+SpaceBeforeJsonColon: true
+
+# Alignment - Prevents deep nesting on wrapped lines
+AlignAfterOpenBracket: BlockIndent
+IndentWrappedFunctionNames: false
+AlignConsecutiveAssignments: false
+AlignOperands: false
+
+# Monkey C specific - FIXED TYPO HERE
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false

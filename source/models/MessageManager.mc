@@ -28,28 +28,20 @@ class MessageManager
         _connectionStatus = STATUS_DISCONNECTED;
 
         var limit = _propertieUtility.getPropertyNumber("MessageLimit", 30);
-        _logger.debug("MessageManager",
-                      "=== MessageManager Retrieved MessageLimit property: " + limit + " ===");
+        _logger.debug(
+            "MessageManager",
+            "=== MessageManager Retrieved MessageLimit property: " + limit + " ==="
+        );
 
         _maxMessages = limit != null ? limit : 20;
-        _logger.debug("MessageManager",
-                      "=== MessageManager initialized with maxMessages: " + _maxMessages + " ===");
+        _logger.debug(
+            "MessageManager",
+            "=== MessageManager initialized with maxMessages: " + _maxMessages + " ==="
+        );
     }
 
-        // Get singleton instance
-        static function getInstance() as MessageManager
-    {
-        if (_instance == null) {
-            _instance = new MessageManager ();
-        }
-        return _instance;
-    }
-
-    //
-    // Messages
-    //
-    public function addMessage (data as Lang.Dictionary) as Void
-    {
+        // Messages
+        public function addMessage(data as Lang.Dictionary) as Void {
         var sender = data.get ("sender");
         var text = data.get ("text");
 
@@ -73,8 +65,7 @@ class MessageManager
         _logger.debug ("MessageManager", "New message from: " + sender.toString ());
     }
 
-    function getMessages () as Lang.Array<Lang.Dictionary>
-    {
+    function getMessages () as Lang.Array<Lang.Dictionary> {
         return _messages;
     }
 
@@ -241,6 +232,16 @@ class MessageManager
             _logger.error ("MessageManager", "Transmit Error");
         }
     }
+
+       // Get singleton instance
+      static function getInstance() as MessageManager
+    {
+        if (_instance == null) {
+            _instance = new MessageManager ();
+        }
+        return _instance;
+    }
+
 }
 
 // Global convenience function

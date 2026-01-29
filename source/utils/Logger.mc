@@ -24,8 +24,8 @@ class Logger {
     _enabled = true;
   }
 
-  // Get singleton instance
-  static function getInstance() as Logger {
+      // Get singleton instance
+      static function getInstance() as Logger {
     if (_instance == null) {
       _instance = new Logger();
     }
