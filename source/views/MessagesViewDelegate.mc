@@ -16,50 +16,77 @@ class MessagesViewDelegate extends WatchUi.BehaviorDelegate
                       "=== MessagesViewDelegate initialized with default view: MessagesView");
     }
 
+    // ============================================================
+    // SCROLLING (works everywhere)
+    // ============================================================
+
     function onNextPage()
     {
-        _logger.debug("MessagesViewDelegate", "onNextPage called - scrolling up");
+        _logger.debug("MessagesViewDelegate", "onNextPage → scroll up");
         _view.scroll(-1);
         return true;
     }
 
     function onPreviousPage()
     {
-        _logger.debug("MessagesViewDelegate", "onPreviousPage called - scrolling down");
+        _logger.debug("MessagesViewDelegate", "onPreviousPage → scroll down");
         _view.scroll(1);
         return true;
     }
 
-    /*
-    // Start button - go to AnalogView (replaces swipe left)
-    function onSelect()
-    {
-        WatchUi.switchToView(new AnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_LEFT);
-        return true;
-    }
-
-    // Back button - go to ClockView (replaces swipe right)
-    function onBack()
-    {
-        WatchUi.switchToView(new ClockView(getMessageManager()), new ClockViewDelegate(),
-                             WatchUi.SLIDE_RIGHT);
-        return true;
-    }
-    */
+    // ============================================================
+    // PRIMARY ACTION (ENTER short press)
+    // ============================================================
 
     function onSelect()
     {
-        // Add a test message when Enter or Start button is pressed
+        _logger.debug("MessagesViewDelegate", "onSelect → add test message");
+
         getMessageManager().addTestMessage();
         WatchUi.requestUpdate();
+
         return true;
     }
 
+    // ============================================================
+    // PREVIOUS VIEW (ENTER long press)
+    // Works on button-only devices
+    // ============================================================
+
+    function onSelectHold()
+    {
+        _logger.debug("MessagesViewDelegate", "onSelectHold → PREVIOUS view");
+
+        goPreviousView();
+        return true;
+    }
+
+
+    // ============================================================
+    // NEXT VIEW (BACK short press)
+    // ESC always maps here on simulator + devices
+    // ============================================================
+
     function onBack()
     {
-        // Clear messages when Escape or Lap button is pressed
+        _logger.debug("MessagesViewDelegate", "onBack → NEXT view");
+
+        goNextView();
+        return true;
+    }
+
+    // ============================================================
+    // SECONDARY ACTION (BACK long press)
+    // Clear messages everywhere
+    // ============================================================
+
+    function onBackHold()
+    {
+        _logger.debug("MessagesViewDelegate", "onBackHold → clear messages");
+
         getMessageManager().clearMessages();
         WatchUi.requestUpdate();
+
         return true;
     }
 
@@ -72,49 +99,61 @@ class MessagesViewDelegate extends WatchUi.BehaviorDelegate
         if (direction == WatchUi.SWIPE_UP) {
             // Scroll up (show older messages)
             _logger.debug("MessagesViewDelegate", "Scrolling up in messages");
-            _view.scroll(-1);
+            onNextPage();
+            //_view.scroll(-1);
             return true;
         } else if (direction == WatchUi.SWIPE_DOWN) {
             // Scroll down (show newer messages)
             _logger.debug("MessagesViewDelegate", "Scrolling down in messages");
-            _view.scroll(1);
+            onPreviousPage();
+            //_view.scroll(1);
             return true;
         } else if (direction == WatchUi.SWIPE_LEFT) {
-            // Switch to clock view
-            _logger.debug("MessagesViewDelegate", "Swipe left - switching to Analog view");
-            WatchUi.switchToView(new AnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_LEFT);
+            _logger.debug("MessagesViewDelegate", "Swipe left");
+            goPreviousView();
             return true;
         } else if (direction == WatchUi.SWIPE_RIGHT) {
-            _logger.debug("MessagesViewDelegate", "Swipe right - switching to Clock view");
-            WatchUi.switchToView(new ClockView(getMessageManager()), new ClockViewDelegate(),
-                                 WatchUi.SLIDE_RIGHT);
+            _logger.debug("MessagesViewDelegate", "Swipe right");
+            goNextView();
             return true;
         }
         return false;
     }
 
-    /*
+    // ============================================================
+    // DO NOT USE onKey() FOR ENTER OR ESC
+    // Only for extra hardware keys if needed
+    // ============================================================
 
-    function onKey(keyEvent as WatchUi.KeyEvent) as Lang.Boolean
+    function onKey(evt as WatchUi.KeyEvent) as Lang.Boolean
     {
-        var key = keyEvent.getKey();
-        var type = keyEvent.getType();
+        var key = evt.getKey();
+        _logger.debug("MessagesViewDelegate", "onKey → " + key);
 
-        _logger.debug("MessagesViewDelegate", "onKey - key: " + key + ", type: " + type);
-
-        if (key == WatchUi.KEY_ENTER || key == WatchUi.KEY_START) {
-            // Add a test message when Enter or Start button is pressed
-            getMessageManager().addTestMessage();
-            WatchUi.requestUpdate();
-            return true;
-        } else if (key == WatchUi.KEY_ESC || key == WatchUi.KEY_LAP) {
-            // Clear messages when Escape or Lap button is pressed
-            getMessageManager().clearMessages();
-            WatchUi.requestUpdate();
+        // Example: LAP button for debug
+        if (key == WatchUi.KEY_LAP) {
+            _logger.debug("MessagesViewDelegate", "LAP pressed → debug action");
             return true;
         }
 
         return false;
     }
-    */
+
+    // ============================================================
+    // NAVIGATION HELPERS (keep logic clean)
+    // ============================================================
+
+    private function goNextView() {
+        _logger.debug("MessagesViewDelegate", "Switching to (next) Clock view");
+
+        WatchUi.switchToView(new ClockView(getMessageManager()), new ClockViewDelegate(),
+                             WatchUi.SLIDE_RIGHT);
+    }
+
+    private function goPreviousView() {
+        _logger.debug("MessagesViewDelegate", "Switching to (previous) Analog view");
+
+        WatchUi.switchToView(new AnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_LEFT);
+        return true;
+    }
 }

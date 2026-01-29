@@ -6,8 +6,11 @@ IndentWidth: 4
 ContinuationIndentWidth: 4
 ColumnLimit: 100
 
-# Quote Style - Correct key for version 18
-# Use 'Double' to force " or 'Leave' to keep whatever you typed
+# Fix for the "Shifting" issue
+AccessModifierOffset: -4
+IndentAccessModifiers: false
+
+# Quote Style
 JavaScriptQuotes: Double
 
 # Braces
@@ -23,17 +26,18 @@ BraceWrapping:
   BeforeElse: false
   IndentBraces: false
 
-# Spacing - Crucial for Monkey C Dictionaries
+# Spacing
 SpaceBeforeAssignmentOperators: true
 SpacesInContainerLiterals: true
 SpaceBeforeJsonColon: true
 
-# Alignment
-AlignAfterOpenBracket: Align
+# Alignment - Prevents deep nesting on wrapped lines
+AlignAfterOpenBracket: BlockIndent
+IndentWrappedFunctionNames: false
 AlignConsecutiveAssignments: false
-AlignOperands: true
+AlignOperands: false
 
-# Monkey C specific "Short" syntax handling
+# Monkey C specific - FIXED TYPO HERE
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false

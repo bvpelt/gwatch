@@ -12,6 +12,7 @@ class MessageManager
     private var _maxMessages as Lang.Number;
     private var _propertieUtility;
     private var _logger;
+    private var _counter = -1;  // Initialization for 0..testmessages.size()
 
     enum {
         STATUS_DISCONNECTED,
@@ -29,6 +30,7 @@ class MessageManager
         var limit = _propertieUtility.getPropertyNumber("MessageLimit", 30);
         _logger.debug("MessageManager",
                       "=== MessageManager Retrieved MessageLimit property: " + limit + " ===");
+
         _maxMessages = limit != null ? limit : 20;
         _logger.debug("MessageManager",
                       "=== MessageManager initialized with maxMessages: " + _maxMessages + " ===");
@@ -43,6 +45,107 @@ class MessageManager
         return _instance;
     }
 
+    //
+    // Messages
+    //
+    public function addMessage (data as Lang.Dictionary) as Void
+    {
+        var sender = data.get ("sender");
+        var text = data.get ("text");
+
+        if (sender == null || text == null) {
+            _logger.warn ("MessageManager", "Message missing sender or text");
+            return;
+        }
+
+        var message = {
+            "sender" => sender,
+            "text" => text,
+            "time" => Time.now ().value (),
+        };
+
+        _messages.add (message);
+
+        if (_messages.size () > _maxMessages) {
+            _messages = _messages.slice (-_maxMessages, null);
+        }
+
+        _logger.debug ("MessageManager", "New message from: " + sender.toString ());
+    }
+
+    function getMessages () as Lang.Array<Lang.Dictionary>
+    {
+        return _messages;
+    }
+
+    function clearMessages () as Void
+    {
+        _messages = [];
+        _logger.debug ("MessageManager", "Messages cleared");
+    }
+
+
+    public function addTestMessage () as Void {
+        var testMessages = [
+            {"sender" => "Alice", "text" => "01 Hey, how are you?"},
+            {"sender" => "Bob", "text" => "02 Meeting at 3pm"},
+            {"sender" => "Charlie", "text" => "03 Don't forget to buy milk"},
+            {"sender" => "Diana", "text" => "04 Running 5 minutes late"},
+            {"sender" => "Eve", "text" => "05 Great job on the presentation!"},
+            {"sender" => "Frank", "text" => "06 Can you call me back?"},
+            {"sender" => "Grace", "text" => "07 Lunch tomorrow?"},
+            {"sender" => "Henry", "text" => "08 Check your email"},
+            {"sender" => "Iris", "text" => "09 Project deadline tomorrow"},
+            {"sender" => "Karl", "text" => "10 You were realy helpfull"},
+            {"sender" => "Liam", "text" => "11 Macbeth is the best"},
+            {"sender" => "Mick", "text" => "12 There is no end to the universe"},
+            {"sender" => "Nigel", "text" => "13 Who should I thank"},
+            {"sender" => "Odin", "text" => "14 Yesterday is a long time ago"},
+            {"sender" => "Paul", "text" => "15 The apprentice succeeded"},
+        ];
+
+        // Pick a random message
+        _counter = (_counter + 1) % testMessages.size();
+        //var index = (System.getTimer () / 1000) % testMessages.size ();
+        var testMsg = testMessages[_counter];
+
+        var message = {
+            "type" => "message",
+            "sender" => testMsg["sender"],
+            "text" => testMsg["text"],
+        };
+
+        // Create a test phone message object
+        var phoneMsg = new TestPhoneAppMessage (message);
+        handlePhoneMessage (phoneMsg);
+
+        _logger.debug ("MessengerDelegate", "addTestMessage from: " + testMsg["sender"]);
+        WatchUi.requestUpdate ();
+    }
+
+
+    //
+    // Connections
+    //
+    function updateConnectionStatus (status as Lang.Number) as Void
+    {
+        var oldStatus = _connectionStatus;
+        _connectionStatus = status;
+
+        if (oldStatus != status) {
+            _logger.info ("MessageManager", "Connection status changed: " + status);
+        }
+    }
+
+    function getConnectionStatus () as Lang.Number
+    {
+        return _connectionStatus;
+    }
+
+
+    //
+    // Phone
+    //
     function handlePhoneMessage (msg as Communications.PhoneAppMessage) as Void
     {
         _logger.debug ("MessageManager", "Received phone message");
@@ -92,57 +195,6 @@ class MessageManager
         }
     }
 
-    public function addMessage (data as Lang.Dictionary) as Void
-    {
-        var sender = data.get ("sender");
-        var text = data.get ("text");
-
-        if (sender == null || text == null) {
-            _logger.warn ("MessageManager", "Message missing sender or text");
-            return;
-        }
-
-        var message = {
-            "sender" => sender,
-            "text" => text,
-            "time" => Time.now ().value (),
-        };
-
-        _messages.add (message);
-
-        if (_messages.size () > _maxMessages) {
-            _messages = _messages.slice (-_maxMessages, null);
-        }
-
-        _logger.debug ("MessageManager", "New message from: " + sender.toString ());
-    }
-
-    function getMessages () as Lang.Array<Lang.Dictionary>
-    {
-        return _messages;
-    }
-
-    function clearMessages () as Void
-    {
-        _messages = [];
-        _logger.debug ("MessageManager", "Messages cleared");
-    }
-
-    function updateConnectionStatus (status as Lang.Number) as Void
-    {
-        var oldStatus = _connectionStatus;
-        _connectionStatus = status;
-
-        if (oldStatus != status) {
-            _logger.info ("MessageManager", "Connection status changed: " + status);
-        }
-    }
-
-    function getConnectionStatus () as Lang.Number
-    {
-        return _connectionStatus;
-    }
-
     function sendToPhone (data as Lang.Dictionary or Lang.String) as Void
     {
         // 1. Check if we are in the Simulator
@@ -189,79 +241,8 @@ class MessageManager
             _logger.error ("MessageManager", "Transmit Error");
         }
     }
-
-    public function addTestMessage () as Void {
-        var testMessages = [
-            {"sender" => "Alice", "text" => "Hey, how are you?"},
-            {"sender" => "Bob", "text" => "Meeting at 3pm"},
-            {"sender" => "Charlie", "text" => "Don't forget to buy milk"},
-            {"sender" => "Diana", "text" => "Running 5 minutes late"},
-            {"sender" => "Eve", "text" => "Great job on the presentation!"},
-            {"sender" => "Frank", "text" => "Can you call me back?"},
-            {"sender" => "Grace", "text" => "Lunch tomorrow?"},
-            {"sender" => "Henry", "text" => "Check your email"},
-            {"sender" => "Iris", "text" => "Project deadline tomorrow"},
-            {"sender" => "Karl", "text" => "You were realy helpfull"},
-            {"sender" => "Liam", "text" => "Macbeth is the best"},
-            {"sender" => "Mick", "text" => "There is no end to the universe"},
-            {"sender" => "Nigel", "text" => "Who should I thank"},
-            {"sender" => "Odin", "text" => "Yesterday is a long time ago"},
-            {"sender" => "Paul", "text" => "The apprentice succeeded"},
-        ];
-
-        // Pick a random message
-        var index = (System.getTimer () / 1000) % testMessages.size ();
-        var testMsg = testMessages[index];
-
-        var message = {
-            "type" => "message",
-            "sender" => testMsg["sender"],
-            "text" => testMsg["text"],
-        };
-
-        // Create a test phone message object
-        var phoneMsg = new TestPhoneAppMessage (message);
-        handlePhoneMessage (phoneMsg);
-
-        _logger.debug ("MessengerDelegate", "addTestMessage from: " + testMsg["sender"]);
-        WatchUi.requestUpdate ();
-    }
 }
 
-class CommListener extends Communications.ConnectionListener
-{
-    private var _logger;
-
-    function initialize ()
-    {
-        _logger = getLogger ();
-        ConnectionListener.initialize ();
-    }
-
-    function onComplete () as Void
-    {
-        _logger.debug ("MessageManager", "Transmit complete");
-    }
-
-    function onError () as Void
-    {
-        _logger.debug ("MessageManager", "Transmit error");
-    }
-
-}
-
-
-// Helper class for testing
-class TestPhoneAppMessage extends Communications.PhoneAppMessage
-{
-    public var data;
-
-    function initialize (d as Lang.Dictionary)
-    {
-        PhoneAppMessage.initialize ();
-        data = d;
-    }
-}
 // Global convenience function
 function getMessageManager () as MessageManager
 {

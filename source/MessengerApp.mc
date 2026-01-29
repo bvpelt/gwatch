@@ -21,11 +21,15 @@ class MessengerApp extends Application.AppBase
         var minimumDebugLevel = _propertieUtility.getPropertyNumber("MinimalDebugLevel", 0);
 
         if (minimumDebugLevel != null) {
-            _logger.info("MessengerApp",
-                         "=== Retrieved minimum debuglevel from properties: " + minimumDebugLevel);
+            _logger.info(
+                "MessengerApp",
+                "=== Retrieved minimum debuglevel from properties: " + minimumDebugLevel
+            );
         } else {
-            _logger.info("MessengerApp",
-                         "=== No minimum debuglevel property found, defaulting to 0 (LEVEL_TRACE)");
+            _logger.info(
+                "MessengerApp",
+                "=== No minimum debuglevel property found, defaulting to 0 (LEVEL_TRACE)"
+            );
             minimumDebugLevel = 0;
         }
 
@@ -107,8 +111,9 @@ class MessengerApp extends Application.AppBase
                 case 1:
                     _logger.debug("MessengerApp", "=== Returning ClockView ===");
 
-                    return ([ new ClockView(getMessageManager()),
-                              new ClockViewDelegate() ] as [WatchUi.Views, WatchUi.InputDelegates]);
+                    return ([
+                        new ClockView(getMessageManager()), new ClockViewDelegate()
+                    ] as [WatchUi.Views, WatchUi.InputDelegates]);
 
                 case 2:
                     _logger.debug("MessengerApp", "=== Returning AnalogView ===");
@@ -130,8 +135,9 @@ class MessengerApp extends Application.AppBase
             // Return a minimal view as fallback
             _logger.debug("MessengerApp", "=== Returning MessagesView as fallback ===");
             var messageView = new MessagesView(getMessageManager());
-            return ([ messageView, new MessagesViewDelegate(
-                                       messageView) ] as [WatchUi.Views, WatchUi.InputDelegates]);
+            return ([
+                messageView, new MessagesViewDelegate(messageView)
+            ] as [WatchUi.Views, WatchUi.InputDelegates]);
         }
     }
 
