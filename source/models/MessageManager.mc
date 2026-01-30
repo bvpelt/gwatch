@@ -242,6 +242,36 @@ class MessageManager
         }
     }
 
+    // NEW: Delete a message by index
+    public function deleteMessage(index as Lang.Number) as Void
+    {
+        if (index >= 0 && index < _messages.size()) {
+            var deletedMsg = _messages[index];
+            _logger.debug("MessageManager", "Deleting message from: " + deletedMsg.get("sender"));
+
+            // Create new array without the deleted message
+            var newMessages = [] as Lang.Array<Lang.Dictionary>;
+            for (var i = 0; i < _messages.size(); i++) {
+                if (i != index) {
+                    newMessages.add(_messages[i]);
+                }
+            }
+            _messages = newMessages;
+
+            _logger.info("MessageManager", "Message deleted. Remaining: " + _messages.size());
+        }
+    }
+
+    // NEW: Delete all read messages (optional helper)
+    public function deleteReadMessages(readIndices as Lang.Array<Lang.Number>) as Void
+    {
+        // Sort indices in descending order to delete from end first
+        // (prevents index shifting issues)
+        for (var i = readIndices.size() - 1; i >= 0; i--) {
+            deleteMessage(readIndices[i]);
+        }
+    }
+
     // Get singleton instance
     static function getInstance() as MessageManager
     {

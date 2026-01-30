@@ -9,7 +9,8 @@ class MessagesView extends WatchUi
 .View
 {
     private var _messageManager;
-    private var _scrollOffset as Lang.Number = 0;  // number of messages
+    private var _scrollOffset as Lang.Number;  // number of messages
+    private var _selectedIndex as Lang.Number;
     private var _logger;
 
     // Constructor
@@ -19,6 +20,7 @@ class MessagesView extends WatchUi
         _logger = getLogger();
         _messageManager = messageManager;
         _scrollOffset = 0;
+        _selectedIndex = -1;  // -1 = no selection
     }
 
     function onLayout(dc as Graphics.Dc) as Void {}
@@ -102,31 +104,105 @@ class MessagesView extends WatchUi
         return messageIndex;
     }
 
+    // MODIFIED: Highlight selected message in drawMessages
     private function drawMessages(
         dc as Graphics.Dc, messages as Lang.Array<Lang.Dictionary>, offset as Lang.Number,
         width as Lang.Number, height as Lang.Number
     ) as Void
     {
+        var y = offset + _scrollOffset;
         var font = Graphics.FONT_XTINY;
-        var y = offset;  // lineHeight;
+        var lineHeight = dc.getFontHeight(font);
         var lineX = 35;
+        var messageSpacing = 5;
+        var messageHeight = lineHeight * 2 + messageSpacing;
 
-        _logger.trace("MessagesView", "Drawing: " + messages.size() + " messages");
+        // Calculate focused message index
+        var focusedIndex = getCurrentMessageIndex();
 
         // Draw from newest (bottom of array) to oldest (top)
-        if (messages.size() > 0) {
-            for (var i = getMessageIndex(messages); i > 0; i--) {
-                drawMessage(dc, font, messages[i - 1], lineX, y, width);
-                y += getMessageSpacing(dc, font);
-
-                if (y + getMessageSpacing(dc, font) > height) {
-                    break;
-                }
+        for (var i = messages.size() - 1; i >= 0; i--) {
+            // Skip messages above visible area
+            if (y + messageHeight < offset) {
+                y += messageHeight;
+                continue;
             }
+
+            // Stop if past bottom
+            if (y > height) {
+                break;
+            }
+
+            var message = Message.fromDictionary(messages[i] as Lang.Dictionary);
+            var sender = messages[i].get("sender");
+            var text = messages[i].get("text");
+
+            if (sender == null || text == null) {
+                y += messageHeight;
+                continue;
+            }
+
+            // NEW: Highlight if this is the focused/selected message
+            var isFocused = (i == focusedIndex);
+            if (isFocused) {
+                // Draw highlight background
+                dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+                dc.fillRectangle(0, y - 2, width, messageHeight);
+            }
+
+            // Draw sender
+            if (y >= offset && y < height) {
+                dc.setColor(
+                    isFocused ? Graphics.COLOR_YELLOW : Graphics.COLOR_BLUE,
+                    Graphics.COLOR_TRANSPARENT
+                );
+                dc.drawText(lineX, y, font, message.sender, Graphics.TEXT_JUSTIFY_LEFT);
+            }
+
+            // Draw message text
+            if (y + lineHeight >= offset && y + lineHeight < height) {
+                dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+                var textStr = message.text;
+                if (textStr.length() > 30) {
+                    textStr = textStr.substring(0, 27) + "...";
+                }
+                dc.drawText(lineX, y + lineHeight, font, textStr, Graphics.TEXT_JUSTIFY_LEFT);
+            }
+
+            // Draw time
+            if (y >= offset && y < height && message.time != null) {
+                var timeStr = formatTime(message.time);
+                dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
+                dc.drawText(width - lineX, y, font, timeStr, Graphics.TEXT_JUSTIFY_RIGHT);
+            }
+
+            y += messageHeight;
         }
 
-        _logger.trace("MessagesView", "drawScrollIndicators offset: " + offset);
-        drawScrollIndicators(dc, offset);
+        // Draw scroll indicators
+        dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+        var centerX = width / 2;
+
+        if (_scrollOffset < 0) {
+            var arrowY = offset + 5;
+            dc.fillPolygon([
+                [centerX, arrowY],
+                [centerX - 6, arrowY + 7],
+                [centerX + 6, arrowY + 7],
+            ]);
+        }
+
+        var totalContentHeight = messages.size() * messageHeight;
+        var visibleContentEnd = offset - _scrollOffset + (height - offset);
+
+        if (totalContentHeight > visibleContentEnd) {
+            var arrowY = height - 20;
+            dc.fillPolygon([
+                [centerX, arrowY + 7],
+                [centerX - 6, arrowY],
+                [centerX + 6, arrowY],
+            ]);
+        }
     }
 
     private var visibleMessages = 4;
@@ -294,5 +370,50 @@ class MessagesView extends WatchUi
     function onExitSleep() as Void
     {
         _logger.debug("MessagesView", "Exiting sleep mode");
+    }
+
+    // NEW: Select a message
+    public function selectMessage(index as Lang.Number) as Void
+    {
+        var messages = _messageManager.getMessages();
+        if (index >= 0 && index < messages.size()) {
+            _selectedIndex = index;
+            _logger.debug("MessagesView", "Selected message: " + index);
+        }
+        WatchUi.requestUpdate();
+    }
+
+    // NEW: Delete the selected message
+    public function deleteSelectedMessage() as Void
+    {
+        if (_selectedIndex >= 0) {
+            _logger.debug("MessagesView", "Deleting message at index: " + _selectedIndex);
+            _messageManager.deleteMessage(_selectedIndex);
+            _selectedIndex = -1;  // Clear selection
+            WatchUi.requestUpdate();
+        }
+    }
+
+    // NEW: Get the currently selected message index based on scroll position
+    public function getCurrentMessageIndex() as Lang.Number
+    {
+        var messages = _messageManager.getMessages();
+        if (messages.size() == 0) {
+            return -1;
+        }
+
+        // Calculate which message is "focused" based on scroll position
+        var messageHeight = 40;  // Same as your scroll calculation
+        var focusedIndex = (-_scrollOffset / messageHeight).toNumber();
+
+        // Clamp to valid range
+        if (focusedIndex < 0) {
+            focusedIndex = 0;
+        }
+        if (focusedIndex >= messages.size()) {
+            focusedIndex = messages.size() - 1;
+        }
+
+        return messages.size() - 1 - focusedIndex;  // Reverse (newest at bottom)
     }
 }
