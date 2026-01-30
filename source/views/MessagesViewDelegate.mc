@@ -140,7 +140,12 @@ class MessagesViewDelegate extends WatchUi
         _logger.debug("MessagesViewDelegate", "onKey → " + key);
 
         // Example: LAP button for debug
-        if (key == WatchUi.KEY_ESC || key == WatchUi.KEY_LAP) {
+        if (key == WatchUi.KEY_ENTER || key == WatchUi.KEY_START) {
+            // Add test message
+            getMessageManager().addTestMessage();
+            WatchUi.requestUpdate();
+            return true;
+        } else if (key == WatchUi.KEY_ESC || key == WatchUi.KEY_LAP) {
             // NEW: Delete current message instead of clearing all
             var currentIndex = _view.getCurrentMessageIndex();
             if (currentIndex >= 0) {
