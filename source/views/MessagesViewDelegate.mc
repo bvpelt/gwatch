@@ -44,6 +44,12 @@ class MessagesViewDelegate extends WatchUi
     // NEW: Delete current message with SELECT (long press or double tap)
     function onSelect() as Lang.Boolean
     {
+        _logger.debug("MessagesViewDelegate", "onSelect → add test message");
+
+        getMessageManager().addTestMessage();
+        WatchUi.requestUpdate();
+        return true;
+        /*
         var currentIndex = _view.getCurrentMessageIndex();
         if (currentIndex >= 0) {
             _logger.debug("MessagesViewDelegate", "Deleting current message");
@@ -56,6 +62,7 @@ class MessagesViewDelegate extends WatchUi
         _logger.debug("MessagesViewDelegate", "No message to delete, switching to AnalogView");
         WatchUi.switchToView(new AnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_LEFT);
         return true;
+        */
     }
 
     // ============================================================
@@ -91,12 +98,26 @@ class MessagesViewDelegate extends WatchUi
 
     function onBackHold()
     {
+        var currentIndex = _view.getCurrentMessageIndex();
+        if (currentIndex >= 0) {
+            _logger.debug("MessagesViewDelegate", "Deleting current message");
+            _view.selectMessage(currentIndex);
+            _view.deleteSelectedMessage();
+            return true;
+        }
+
+        // If no message to delete, navigate to next view
+        _logger.debug("MessagesViewDelegate", "No message to delete, switching to AnalogView");
+        WatchUi.switchToView(new AnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_LEFT);
+        return true;
+        /*
         _logger.debug("MessagesViewDelegate", "onBackHold → clear messages");
 
         getMessageManager().clearMessages();
         WatchUi.requestUpdate();
 
         return true;
+        */
     }
 
     function onSwipe(swipeEvent as WatchUi.SwipeEvent) as Lang.Boolean
@@ -137,22 +158,17 @@ class MessagesViewDelegate extends WatchUi
     function onKey(evt as WatchUi.KeyEvent) as Lang.Boolean
     {
         var key = evt.getKey();
-        _logger.debug("MessagesViewDelegate", "onKey → " + key);
 
-        // Example: LAP button for debug
-        if (key == WatchUi.KEY_ENTER || key == WatchUi.KEY_START) {
-            // Add test message
-            getMessageManager().addTestMessage();
-            WatchUi.requestUpdate();
-            return true;
-        } else if (key == WatchUi.KEY_ESC || key == WatchUi.KEY_LAP) {
-            // NEW: Delete current message instead of clearing all
+        if (key == WatchUi.KEY_LAP) {  // KEY_LAP is 'L' in simulator
+            _logger.debug("MessagesViewDelegate", "LAP → delete message");
+
             var currentIndex = _view.getCurrentMessageIndex();
             if (currentIndex >= 0) {
-                _logger.debug("MessagesViewDelegate", "Deleting focused message");
                 _view.selectMessage(currentIndex);
                 _view.deleteSelectedMessage();
+                WatchUi.requestUpdate();
             }
+
             return true;
         }
 
