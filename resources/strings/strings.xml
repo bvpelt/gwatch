@@ -1,5 +1,5 @@
 <strings>
-    <string id="AppName">MessengerApp</string>
+    <string id="AppName">gwatch</string>
 
     <!-- View names -->
     <string id="ClockView">Clock</string>
