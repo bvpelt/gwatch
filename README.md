@@ -11,6 +11,16 @@ Watch implementation
 | Select short     | Add message      |
 | Select long      | Switch forward   |
 
+**key mapping**
+| Simulator / Watch Button | Delegate Method |
+|--------------------------|-----------------|
+| Click / Tap / Space	   | onSelect()      | 
+| Start / Enter	         | onSelect()      | 
+| Long Start	         | onSelectHold()  | 
+| ESC / Back	         | onBack()        | 
+| Long ESC	               | onBackHold()    | 
+| Swipe	               | onSwipe()       | 
+
 # Events
 
 ```text
