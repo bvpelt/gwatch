@@ -18,21 +18,22 @@ clean: kill-simulator
 
 build:
 	@echo "Building prg..."
-	monkeyc -o build/$(APP_NAME).prg -f monkey.jungle -y $(KEY) -d $(DEVICE) -w
+	monkeyc -o bin/$(APP_NAME).prg -f monkey.jungle -y $(KEY) -d $(DEVICE) -w
 
 run: build
 	@echo "Running in simulator..."
 	pgrep simulator >/dev/null || connectiq &
 	sleep 5
-	monkeydo build/MessengerApp.prg ${DEVICE}
+	monkeydo bin/MessengerApp.prg ${DEVICE}
 
 clean-storage: clean
 	@echo "Cleaning simulator storage..."
-	rm -rf source/mir/*
-	rm -rf source/gen/*
-	rm -rf source/internal-mir/*
-	rm -rf /tmp/com.garmin.connectiq/* 
-	rm -rf ~/.Garmin/ConnectIQ/Devices/$(DEVICE)/APPS/*
+	rm -rf bin/ build/
+	rm -rf source/mir/
+	rm -rf source/gen/
+	rm -rf source/internal-mir/
+	rm -rf /tmp/com.garmin.connectiq/ 
+	rm -rf ~/.Garmin/ConnectIQ/Devices/$(DEVICE)/APPS/
 
 fresh: clean clean-storage build run
 	@echo "Fresh build complete!"

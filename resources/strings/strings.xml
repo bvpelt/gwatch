@@ -1,5 +1,5 @@
-<strings xmlns:settings="http://www.garmin.com/xml/connectiq">
-    <string id="AppName">Messenger Watch</string>
+<strings>
+    <string id="AppName">MessengerApp</string>
 
     <!-- View names -->
     <string id="ClockView">Clock</string>

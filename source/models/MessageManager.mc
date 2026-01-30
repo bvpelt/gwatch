@@ -39,6 +39,24 @@ class MessageManager
             "MessageManager",
             "=== MessageManager initialized with maxMessages: " + _maxMessages + " ==="
         );
+
+        /*
+                // Add these lines temporarily for debugging
+                // 1. Test if STRINGS are loaded (from resources/strings/strings.xml)
+                var testString = WatchUi.loadResource(Rez.Strings.ColorProfileTitle);
+                _logger.debug(
+                    "MessageManager",
+                    "=== MessageManager initialized with testString: " + testString + " ==="
+                );
+
+                // 2. Test if PROPERTIES are loaded (from resources/properties/properties.xml)
+                // Note: We don't loadResource on properties, but we reference the symbol
+                var testProp = Rez.Properties.DefaultView;
+                _logger.debug(
+                    "MessageManager", "=== MessageManager initialized with testProp: " + testProp +
+           " ==="
+                );
+                */
     }
 
     //
