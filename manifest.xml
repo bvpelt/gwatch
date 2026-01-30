@@ -2,11 +2,15 @@
 <iq:manifest version="3" xmlns:iq="http://www.garmin.com/xml/connectiq">
     <iq:application id="1d7dd72a-3ab9-46fa-827e-9b926cefec91" type="watch-app" name="@Strings.AppName" entry="MessengerApp" launcherIcon="@Drawables.LauncherIcon" minApiLevel="3.2.0">
         <iq:products>
+            <iq:product id="fenix5splus"/>
+            <iq:product id="fenix6s"/>
             <iq:product id="fr165"/>
             <iq:product id="fr255"/>
             <iq:product id="fr265"/>
             <iq:product id="fr955"/>
             <iq:product id="fr965"/>
+            <iq:product id="venu2s"/>
+            <iq:product id="venu3s"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Communications"/>

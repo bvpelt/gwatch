@@ -229,20 +229,28 @@ class AnalogView extends WatchUi
     {
         // Dark background
         dc.setColor(facebgcolor, Graphics.COLOR_TRANSPARENT);
-        dc.fillCircle(centerX, centerY, radius * 0.97);
+        dc.fillCircle(centerX, centerY, (radius * 0.97).toNumber());
 
         // Outer silver ring
         dc.setColor(facebordercolor, Graphics.COLOR_TRANSPARENT);
-        dc.setPenWidth(radius * 0.06);
-        dc.drawCircle(centerX, centerY, radius * 0.97);
+        var outerPenWidth = (radius * 0.06).toNumber();
+        if (outerPenWidth < 1) {
+            outerPenWidth = 1;
+        }
+        dc.setPenWidth(outerPenWidth);
+        dc.drawCircle(centerX, centerY, (radius * 0.97).toNumber());
 
         // Inner ring
-        dc.setPenWidth(radius * 0.01);
-        dc.drawCircle(centerX, centerY, radius * 0.9);
+        var innerPenWidth = (radius * 0.01).toNumber();
+        if (innerPenWidth < 1) {
+            innerPenWidth = 1;
+        }
+        dc.setPenWidth(innerPenWidth);
+        dc.drawCircle(centerX, centerY, (radius * 0.9).toNumber());
 
         // Center point
         dc.setColor(handcentercolor, Graphics.COLOR_TRANSPARENT);
-        dc.fillCircle(centerX, centerY, radius * 0.04);
+        dc.fillCircle(centerX, centerY, (radius * 0.04).toNumber());
     }
 
     private function drawLoad(dc)
@@ -251,26 +259,31 @@ class AnalogView extends WatchUi
         var loadPercentage = System.getSystemStats().battery;
         var sweepAngle = (loadPercentage / 100.0) * 360;
 
+        var loadPenWidth = (radius * 0.05).toNumber();
+        if (loadPenWidth < 1) {
+            loadPenWidth = 1;
+        }
+
+        var arcRadius = (radius * 0.92).toNumber();
+
         // Green portion (loaded)
         dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
-        dc.setPenWidth(radius * 0.05);
+        dc.setPenWidth(loadPenWidth);
         dc.drawArc(
-            centerX, centerY, radius * 0.92, Graphics.ARC_CLOCKWISE, startAngle,
-            startAngle - sweepAngle
+            centerX, centerY, arcRadius, Graphics.ARC_CLOCKWISE, startAngle, startAngle - sweepAngle
         );
 
         // Red portion (remaining)
         dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
         dc.drawArc(
-            centerX, centerY, radius * 0.92, Graphics.ARC_CLOCKWISE, startAngle - sweepAngle,
-            startAngle
+            centerX, centerY, arcRadius, Graphics.ARC_CLOCKWISE, startAngle - sweepAngle, startAngle
         );
     }
 
     private function drawHourMarkers(dc)
     {
-        var triangleHeight = radius * 0.07;
-        var triangleBase = radius * 0.04;
+        var triangleHeight = (radius * 0.07).toNumber();
+        var triangleBase = (radius * 0.04).toNumber();
 
         for (var i = 0; i < 12; i++) {
             var angle = (i * Math.PI) / 6;
@@ -281,16 +294,16 @@ class AnalogView extends WatchUi
             var cosPerAngle = Math.cos(perpAngle);
             var sinPerAngle = Math.sin(perpAngle);
 
-            var xOuter = centerX + cosAngle * radius * 0.88;
-            var yOuter = centerY + sinAngle * radius * 0.88;
+            var xOuter = (centerX + cosAngle * radius * 0.88).toNumber();
+            var yOuter = (centerY + sinAngle * radius * 0.88).toNumber();
 
-            var xBase1 = xOuter + cosPerAngle * (triangleBase / 2);
-            var yBase1 = yOuter + sinPerAngle * (triangleBase / 2);
-            var xBase2 = xOuter - cosPerAngle * (triangleBase / 2);
-            var yBase2 = yOuter - sinPerAngle * (triangleBase / 2);
+            var xBase1 = (xOuter + cosPerAngle * (triangleBase / 2)).toNumber();
+            var yBase1 = (yOuter + sinPerAngle * (triangleBase / 2)).toNumber();
+            var xBase2 = (xOuter - cosPerAngle * (triangleBase / 2)).toNumber();
+            var yBase2 = (yOuter - sinPerAngle * (triangleBase / 2)).toNumber();
 
-            var xTip = centerX + cosAngle * (radius * 0.88 - triangleHeight);
-            var yTip = centerY + sinAngle * (radius * 0.88 - triangleHeight);
+            var xTip = (centerX + cosAngle * (radius * 0.88 - triangleHeight)).toNumber();
+            var yTip = (centerY + sinAngle * (radius * 0.88 - triangleHeight)).toNumber();
 
             dc.setColor(hourmarkercolor, Graphics.COLOR_TRANSPARENT);
             dc.fillPolygon([
@@ -303,10 +316,16 @@ class AnalogView extends WatchUi
 
     private function drawMinuteTicks(dc)
     {
-        var tickLength = radius * 0.04;
+        var tickLength = (radius * 0.04).toNumber();
 
         dc.setColor(minutetickcolor, Graphics.COLOR_TRANSPARENT);
-        dc.setPenWidth(radius * 0.008);
+
+        // FIX: Ensure pen width is at least 1 pixel and is an integer
+        var penWidth = (radius * 0.008).toNumber();
+        if (penWidth < 1) {
+            penWidth = 1;
+        }
+        dc.setPenWidth(penWidth);
 
         for (var i = 0; i < 60; i++) {
             if (i % 5 != 0) {
@@ -315,10 +334,10 @@ class AnalogView extends WatchUi
                 var cosAngle = Math.cos(angle);
                 var sinAngle = Math.sin(angle);
 
-                var xStart = centerX + cosAngle * radius * 0.88;
-                var yStart = centerY + sinAngle * radius * 0.88;
-                var xEnd = centerX + cosAngle * (radius * 0.88 - tickLength);
-                var yEnd = centerY + sinAngle * (radius * 0.88 - tickLength);
+                var xStart = (centerX + cosAngle * radius * 0.88).toNumber();
+                var yStart = (centerY + sinAngle * radius * 0.88).toNumber();
+                var xEnd = (centerX + cosAngle * (radius * 0.88 - tickLength)).toNumber();
+                var yEnd = (centerY + sinAngle * (radius * 0.88 - tickLength)).toNumber();
 
                 dc.drawLine(xStart, yStart, xEnd, yEnd);
             }
@@ -336,8 +355,8 @@ class AnalogView extends WatchUi
             var cosAngle = Math.cos(angle);
             var sinAngle = Math.sin(angle);
 
-            var x = centerX + cosAngle * radius * 0.7;
-            var y = centerY + sinAngle * radius * 0.7;
+            var x = (centerX + cosAngle * radius * 0.7).toNumber();
+            var y = (centerY + sinAngle * radius * 0.7).toNumber();
 
             dc.drawText(
                 x, y, font, numbers[i].toString(),
@@ -362,18 +381,23 @@ class AnalogView extends WatchUi
         var boxHeight = (radius * 0.16).toNumber();
         var boxSpacing = (radius * 0.03).toNumber();
 
-        // Weekday box (left) for instance "Ma" "Mon" for Maandag, Monday
-        var maxlen = centerX + radius * 0.65;
-        var boxDNumberX = maxlen - boxNumberWidth;                                // date number
-        var boxWDNameX = maxlen - boxWeekdayWidth - boxNumberWidth - boxSpacing;  // weekday name
+        var maxlen = (centerX + radius * 0.65).toNumber();
+        var boxDNumberX = maxlen - boxNumberWidth;
+        var boxWDNameX = maxlen - boxWeekdayWidth - boxNumberWidth - boxSpacing;
 
         var boxY = centerYPos - boxHeight / 2;
 
+        var outlinePenWidth = (radius * 0.008).toNumber();
+        if (outlinePenWidth < 1) {
+            outlinePenWidth = 1;
+        }
+
+        // Weekday box
         dc.setColor(daybgcolor, Graphics.COLOR_TRANSPARENT);
         dc.fillRectangle(boxWDNameX, boxY, boxWeekdayWidth, boxHeight);
 
         dc.setColor(dayoutlinecolor, Graphics.COLOR_TRANSPARENT);
-        dc.setPenWidth((radius * 0.008).toNumber());
+        dc.setPenWidth(outlinePenWidth);
         dc.drawRectangle(boxWDNameX, boxY, boxWeekdayWidth, boxHeight);
 
         dc.setColor(daynamecolor, Graphics.COLOR_TRANSPARENT);
@@ -382,12 +406,12 @@ class AnalogView extends WatchUi
             Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER
         );
 
-        // Day box (right)
+        // Day box
         dc.setColor(daybgcolor, Graphics.COLOR_TRANSPARENT);
         dc.fillRectangle(boxDNumberX, boxY, boxNumberWidth, boxHeight);
 
         dc.setColor(dayoutlinecolor, Graphics.COLOR_TRANSPARENT);
-        dc.setPenWidth((radius * 0.008).toNumber());
+        dc.setPenWidth(outlinePenWidth);
         dc.drawRectangle(boxDNumberX, boxY, boxNumberWidth, boxHeight);
 
         dc.setColor(daynumbercolor, Graphics.COLOR_TRANSPARENT);
@@ -416,11 +440,17 @@ class AnalogView extends WatchUi
             // Second hand
             var secondAngle = (second * Math.PI) / 30 - Math.PI / 2;
             dc.setColor(handfgcolor, Graphics.COLOR_TRANSPARENT);
-            dc.setPenWidth(radius * 0.025);
-            var x1 = centerX - Math.cos(secondAngle) * radius * 0.1;
-            var y1 = centerY - Math.sin(secondAngle) * radius * 0.1;
-            var x2 = centerX + Math.cos(secondAngle) * radius * 0.75;
-            var y2 = centerY + Math.sin(secondAngle) * radius * 0.75;
+
+            var secondPenWidth = (radius * 0.025).toNumber();
+            if (secondPenWidth < 1) {
+                secondPenWidth = 1;
+            }
+            dc.setPenWidth(secondPenWidth);
+
+            var x1 = (centerX - Math.cos(secondAngle) * radius * 0.1).toNumber();
+            var y1 = (centerY - Math.sin(secondAngle) * radius * 0.1).toNumber();
+            var x2 = (centerX + Math.cos(secondAngle) * radius * 0.75).toNumber();
+            var y2 = (centerY + Math.sin(secondAngle) * radius * 0.75).toNumber();
             dc.drawLine(x1, y1, x2, y2);
         }
     }
