@@ -158,7 +158,7 @@ class MessagesViewDelegate extends WatchUi
     {
         _logger.debug("MessagesViewDelegate", "Switching to (previous) Analog view");
 
-        WatchUi.switchToView(new AnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_LEFT);
+        WatchUi.switchToView(getAnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_LEFT);
         return true;
     }
 }

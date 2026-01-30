@@ -75,7 +75,7 @@ class ClockViewDelegate extends WatchUi
     {
         _logger.debug("ClockViewDelegate", "Switching to (next) Analog view");
 
-        WatchUi.switchToView(new AnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_RIGHT);
+        WatchUi.switchToView(getAnalogView(), new AnalogViewDelegate(), WatchUi.SLIDE_RIGHT);
         return true;
     }
 

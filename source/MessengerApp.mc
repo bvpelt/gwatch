@@ -11,6 +11,10 @@ class MessengerApp extends Application
     private var _connectionCheckTimer;
     private var _lastMessageTime;
 
+    private var _messageView;
+    private var _clockView;
+    private var _analogView;
+
     private var _logger;
     private var _propertieUtility;
 
@@ -108,12 +112,16 @@ class MessengerApp extends Application
 
       // 1. Update the IsCustomProfile logic
       var profile = Application.Properties.getValue("ColorProfile");
+
       // If profile is 4 (Custom), set the hidden property to true
       Application.Properties.setValue("IsCustomProfile", profile == 4);
 
       // 2. Tell the active views to refresh their colors/settings
       // Since we use Singletons, we can call them directly
-      new AnalogView().updateSettings();
+      if (_analogView == null) {
+          _analogView = getAnalogView();
+      }
+      _analogView.updateSettings();
 
       // 3. Force a UI refresh
       WatchUi.requestUpdate();
@@ -134,30 +142,38 @@ class MessengerApp extends Application
           switch (defaultView) {
               case 0:
                   _logger.debug("MessengerApp", "=== Returning MessagesView ===");
-                  var messageView = new MessagesView(getMessageManager());
+                  if (_messageView == null) {
+                      _messageView = new MessagesView(getMessageManager());
+                  }
                   return ([
-                      messageView, new MessagesViewDelegate(messageView)
+                      _messageView, new MessagesViewDelegate(_messageView)
                   ] as[WatchUi.Views, WatchUi.InputDelegates]);
 
               case 1:
                   _logger.debug("MessengerApp", "=== Returning ClockView ===");
-
+                  if (_clockView == null) {
+                      _clockView = new ClockView(getMessageManager());
+                  }
                   return ([
-                      new ClockView(getMessageManager()), new ClockViewDelegate()
+                      _clockView, new ClockViewDelegate()
                   ] as[WatchUi.Views, WatchUi.InputDelegates]);
 
               case 2:
                   _logger.debug("MessengerApp", "=== Returning AnalogView ===");
-
+                  if (_analogView == null) {
+                      _analogView = getAnalogView();
+                  }
                   return ([
-                      new AnalogView(), new AnalogViewDelegate()
+                      _analogView, new AnalogViewDelegate()
                   ] as[WatchUi.Views, WatchUi.InputDelegates]);
 
               default:
                   _logger.debug("MessengerApp", "=== Returning default MessagesView ===");
-                  var messageView1 = new MessagesView(getMessageManager());
+                  if (_messageView == null) {
+                      _messageView = new MessagesView(getMessageManager());
+                  }
                   return ([
-                      messageView1, new MessagesViewDelegate(messageView1)
+                      _messageView, new MessagesViewDelegate(_messageView)
                   ] as[WatchUi.Views, WatchUi.InputDelegates]);
           }
 
@@ -165,9 +181,11 @@ class MessengerApp extends Application
           _logger.debug("MessengerApp", "ERROR in getInitialView: " + ex.getErrorMessage());
           // Return a minimal view as fallback
           _logger.debug("MessengerApp", "=== Returning MessagesView as fallback ===");
-          var messageView = new MessagesView(getMessageManager());
+          if (_messageView == null) {
+              _messageView = new MessagesView(getMessageManager());
+          }
           return ([
-              messageView, new MessagesViewDelegate(messageView)
+              _messageView, new MessagesViewDelegate(_messageView)
           ] as[WatchUi.Views, WatchUi.InputDelegates]);
       }
   }
