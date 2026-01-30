@@ -265,7 +265,7 @@ class MessagesView extends WatchUi
         /*
             // Optional: Draw status text
             dc.setColor(Graphics.COLOR_LT_GRAY, Graphics.COLOR_TRANSPARENT);
-            dc.drawText(width - 25, 5, Graphics.FONT_XTINY, statusText,
+                dc.drawText(width - 25, 5, Graphics.FONT_XTINY, statusText,
            Graphics.TEXT_JUSTIFY_RIGHT);
         */
     }

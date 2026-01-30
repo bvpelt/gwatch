@@ -137,6 +137,11 @@ class MessageManager
         return _connectionStatus;
     }
 
+    function isConnected()
+    {
+        return _connectionStatus == 2;
+    }
+
     //
     // Phone
     //
