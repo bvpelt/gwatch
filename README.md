@@ -1,6 +1,8 @@
 # gwatch
 Watch implementation
 
+Published: https://apps.garmin.com/apps/619d861b-b12f-44ab-ad85-2c05f574aeaf
+
 
 # Navigation
 

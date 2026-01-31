@@ -219,3 +219,8 @@ Format all files using clang-format
 # This finds all .mc files and formats them in-place using your config
 find . -name "*.mc" -exec clang-format -i -style=file --assume-filename=test.cs {} +
 ```
+
+
+# Beta apps
+
+- [Howto install](https://forums.garmin.com/developer/connect-iq/f/connect-iq-web-store/427577/how-does-one-install-a-beta-app)

@@ -2,6 +2,7 @@ using Toybox.Application;
 using Toybox.Lang;
 using Toybox.WatchUi;
 using Toybox.Communications;
+using Toybox.System;
 
 class MessengerApp extends Application
 .AppBase
@@ -68,12 +69,8 @@ class MessengerApp extends Application
       _connectionCheckTimer.start(method(: checkConnection), 5000, true);
 
       // Check if we're in the simulator
-      var deviceSettings = System.getDeviceSettings();
-      var isSimulator = (deviceSettings has: isSimulator && deviceSettings.isSimulator) ||
-          deviceSettings.partNumber.equals("006-B0000-00");
-
       // Only start connection check on real device
-      if (!isSimulator) {
+      if (!checkIsSimulator()) {
           _connectionCheckTimer = new Timer.Timer();
           _connectionCheckTimer.start(method(: checkConnection), 5000, true);
       }
@@ -233,4 +230,34 @@ class MessengerApp extends Application
 function getApp() as MessengerApp
 {
     return Application.getApp() as MessengerApp;
+}
+
+// global convenience function
+
+// Rename function to avoid symbol collision with the property 'isSimulator'
+function checkIsSimulator()
+{
+    var devSettings = System.getDeviceSettings();
+    getLogger().debug(
+        "checkIsSimulator",
+        "simulator part number: " + devSettings.partNumber + " expected: 006-B4432-00"
+    );
+
+    // 1. Check the official property if the device supports it
+    // clang-format off
+    if (devSettings has :isSimulator) {
+    // clang-format off
+        // Explicitly compare to true to avoid type confusion
+        if (devSettings.isSimulator == true) {
+            return true;
+        }
+    }
+    
+    // 2. Fallback check using the Simulator Part Number
+    // (006-B0000-00 is the standard simulator part number)
+    if (devSettings.partNumber.equals("006-B4432-00")) {
+        return true;
+    }
+    
+    return false;
 }

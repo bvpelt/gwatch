@@ -8,9 +8,10 @@ OUTPUT_DIR = bin
 # prg or iq
 OUTPUT_EXT = prg
 
-# BINDIR = ~/.Garmin/ConnectIQ/Sdks/connectiq-sdk-lin-8.4.0-2025-12-03-5122605dc/bin
+# Change for each version of the sdk
+BIN_DIR = ~/.Garmin/ConnectIQ/Sdks/connectiq-sdk-lin-8.4.0-2025-12-03-5122605dc/bin
 
-.PHONY: clean build run fresh kill-simulator
+.PHONY: clean build run fresh kill-simulator export
 
 kill-simulator:
 	@echo "Killing simulator and rogue processes..."
@@ -40,3 +41,6 @@ clean-storage: clean
 
 fresh: clean clean-storage build run
 	@echo "Fresh build complete!"
+
+export: clean-storage
+	java -Xms1g -Dfile.encoding=UTF-8 -Dapple.awt.UIElement=true -jar $(BIN_DIR)/monkeybrains.jar -o $(OUTPUT_DIR)/gwatch.iq -f monkey.jungle -y $(KEY) -e -r -w

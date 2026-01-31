@@ -43,12 +43,16 @@ class MessagesViewDelegate extends WatchUi
 
     function onSelect()
     {
-        _logger.debug("MessagesViewDelegate", "onSelect → add test message");
+        if (checkIsSimulator()) {
+            _logger.debug("MessagesViewDelegate", "onSelect → add test message");
 
-        getMessageManager().addTestMessage();
-        WatchUi.requestUpdate();
+            getMessageManager().addTestMessage();
+            WatchUi.requestUpdate();
 
-        return true;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // ============================================================
@@ -129,13 +133,15 @@ class MessagesViewDelegate extends WatchUi
 
     function onKey(evt as WatchUi.KeyEvent) as Lang.Boolean
     {
-        var key = evt.getKey();
-        _logger.debug("MessagesViewDelegate", "onKey → " + key);
+        if (checkIsSimulator()) {
+            var key = evt.getKey();
+            _logger.debug("MessagesViewDelegate", "onKey → " + key);
 
-        // Example: LAP button for debug
-        if (key == WatchUi.KEY_LAP) {
-            _logger.debug("MessagesViewDelegate", "LAP pressed → debug action");
-            return true;
+            // Example: LAP button for debug
+            if (key == WatchUi.KEY_LAP) {
+                _logger.debug("MessagesViewDelegate", "LAP pressed → debug action");
+                return true;
+            }
         }
 
         return false;
