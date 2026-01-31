@@ -232,29 +232,29 @@ See https://coolors.co/130303-2d080a-7c3626-f5853f-ffcdbc
 ![brownisch](./images/colorscheme-brownish.png)
 ```json
 // brownisch
-["#130303","#2d080a","#7c3626","#f5853f","#ffcdbc"]
+[{"coffee bean", "#130303"},{"rich mahogany", "#2d080a"},{"chestnut", "#7c3626"},{"pumpkin spice","#f5853f"},{"almond slik", "#ffcdbc"}]
 ```
 
 ![blueisch](./images/colorscheme-blueish.png)
 ```json
 // blueisch
-["#3c3744","#090c98","#3066be","#b4c5e4","#fbfff1"]
+[{"graphite", "#3c3744"},{"navy electric", "#090c98"},{"smart blue", "#3066be"},{"powder blue", "#b4c5e4"},{"Ivory", "#fbfff1"}]
 ```
 
 ![darkblue](./images/colorscheme-darkblue.png)
 ```json
 // darkblue
-["#2e1e4e","#960200","#ce6c47","#ffdd46","#eadaa2"]
+[{"dark amethyst", "#241e4e"},{"oxblood", "#960200"},{"burnt peach", "#ce6c47"},{"golden pollen", "#ffd046"},{"vanilla custard", "#eadaa2"}]
 ```
 
 ![blues](./images/colorscheme-blues.png)
 ```json
 // blues
-["#b9d6f2","#061a40","#0353a4","#006daa","#003559"]
+[{"pale sky", "#b9d6f2"},{"prussian blue", "#061a40"},{"sapphire", "#0353a4"},{"cornflower ocean", "#006daa"},{"deep space blue", "#003559"}]
 ```
 
 ![orange](./images/colorscheme-orange.png)
 ```json
 // orange
-["#f6511d","#ffb400","#7fb800","#00a6ed","#0d2c54"]
+[{"crimson carrot", "#f6511d"},{"amber flame", "#ffb400"},{"lime mint", "#7fb800"},{"fresh sky", "#00a6ed"},{"oxford navy", "#0d2c54"}]
 ```
