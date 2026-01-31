@@ -43,4 +43,5 @@ fresh: clean clean-storage build run
 	@echo "Fresh build complete!"
 
 export: clean-storage
+	find . -name "gwatch.iq" -delete
 	java -Xms1g -Dfile.encoding=UTF-8 -Dapple.awt.UIElement=true -jar $(BIN_DIR)/monkeybrains.jar -o $(OUTPUT_DIR)/gwatch.iq -f monkey.jungle -y $(KEY) -e -r -w

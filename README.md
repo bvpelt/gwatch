@@ -3,6 +3,14 @@ Watch implementation
 
 Published: https://apps.garmin.com/apps/619d861b-b12f-44ab-ad85-2c05f574aeaf
 
+# Publishing
+
+- change debug level to Warning in the resources/properties/properties.xml and save this file
+>> <property id="MinimalDebugLevel" type="number">3</property>
+- build an export
+>> ```make clean-storage export```
+- publish the app using https://apps.garmin.com/en-US/developer/upload  and/or https://apps.garmin.com/apps/619d861b-b12f-44ab-ad85-2c05f574aeaf 
+
 
 # Navigation
 

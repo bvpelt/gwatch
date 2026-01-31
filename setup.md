@@ -224,3 +224,37 @@ find . -name "*.mc" -exec clang-format -i -style=file --assume-filename=test.cs 
 # Beta apps
 
 - [Howto install](https://forums.garmin.com/developer/connect-iq/f/connect-iq-web-store/427577/how-does-one-install-a-beta-app)
+
+
+# Colors
+See https://coolors.co/130303-2d080a-7c3626-f5853f-ffcdbc
+
+![brownisch](./images/colorscheme-brownish.png)
+```json
+// brownisch
+["#130303","#2d080a","#7c3626","#f5853f","#ffcdbc"]
+```
+
+![blueisch](./images/colorscheme-blueish.png)
+```json
+// blueisch
+["#3c3744","#090c98","#3066be","#b4c5e4","#fbfff1"]
+```
+
+![darkblue](./images/colorscheme-darkblue.png)
+```json
+// darkblue
+["#2e1e4e","#960200","#ce6c47","#ffdd46","#eadaa2"]
+```
+
+![blues](./images/colorscheme-blues.png)
+```json
+// blues
+["#b9d6f2","#061a40","#0353a4","#006daa","#003559"]
+```
+
+![orange](./images/colorscheme-orange.png)
+```json
+// orange
+["#f6511d","#ffb400","#7fb800","#00a6ed","#0d2c54"]
+```
