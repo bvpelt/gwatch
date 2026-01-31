@@ -58,15 +58,43 @@
     <string id="MarkerFaceTitle">Marker Settings</string>
     <string id="MarkerFaceDesc">Customize the appearance for markers on the watch face.</string>
 
-    <string id="ColorBlack">Black</string>
+   
     <string id="ColorBlue">Blue</string>
     <string id="ColorGold">Gold</string>
     <string id="ColorDarkGray">Dark Gray</string>
     <string id="ColorGray">Gray</string>
     <string id="ColorGreen">Green</string>
-    <string id="ColorRed">Red</string>
-    <string id="ColorSilver">Silver</string>
-    <string id="ColorWhite">White</string>
     <string id="ColorYellow">Yellow</string>
-
+    <string id="ColorBlack">Black</string>
+    <string id="ColorPrussianBlue">Prussian Blue</string>
+    <string id="ColorNavyElectric">Navy Electric</string>
+    <string id="ColorOxfordNavy">Oxford Navy</string>
+    <string id="ColorCoffeeBean">Coffee Bean</string>
+    <string id="ColorDarkAmethyst">Dark Amethyst</string>
+    <string id="ColorRichMahogany">Rich Mahogany</string>
+    <string id="ColorDeepSpaceBlue">Deep Space Blue</string>
+    <string id="ColorGraphite">Graphite</string>
+    <string id="ColorCharcoal">Charcoal</string>
+    <string id="ColorChestnut">Chestnut</string>
+    <string id="ColorOxblood">Oxblood</string>
+    <string id="ColorLimeMoss">Lime Moss</string>
+    <string id="ColorSmartBlue">Smart Blue</string>
+    <string id="ColorSapphire">Sapphire</string>
+    <string id="ColorCornflowerOcean">Cornflower Ocean</string>
+    <string id="ColorCoolSteel">Cool Steel</string>
+    <string id="ColorSilver">Silver</string>
+    <string id="ColorPaleSky">Pale Sky</string>
+    <string id="ColorPowderBlue">Powder Blue</string>
+    <string id="ColorVanillaCustard">Vanilla Custard</string>
+    <string id="ColorGoldenPollen">Golden Pollen</string>
+    <string id="ColorAmberFlame">Amber Flame</string>
+    <string id="ColorBurntPeach">Burnt Peach</string>
+    <string id="ColorPumpkinSpice">Pumpkin Spice</string>
+    <string id="ColorCrimsonCarrot">Crimson Carrot</string>
+    <string id="ColorCinnabar">Cinnabar</string>
+    <string id="ColorRed">Red</string>
+    <string id="ColorFreshSky">Fresh Sky</string>
+    <string id="ColorAlmondSilk">Almond Silk</string>
+    <string id="ColorIvory">Ivory</string>
+    <string id="ColorWhite">White</string>
 </strings>

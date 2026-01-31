@@ -1,23 +1,15 @@
 <settings>
 
-    <setting propertyKey="@Properties.DefaultView" title="@Strings.ViewModeTitle">
+    <setting propertyKey="@Properties.ViewMode" title="@Strings.ViewModeTitle">
         <settingConfig type="list">
-            <listEntry value="0">@Strings.ViewModeMessages</listEntry>
-            <listEntry value="1">@Strings.ViewModeClock</listEntry>
-            <listEntry value="2">@Strings.ViewModeAnalogClock</listEntry>
+            <listEntry value="0">@Strings.ViewModeClock</listEntry>
+            <listEntry value="1">@Strings.ViewModeAnalogClock</listEntry>
+            <listEntry value="2">@Strings.ViewModeMessages</listEntry>
         </settingConfig>
     </setting>
 
-    <setting propertyKey="@Properties.ShowNotifications" title="@Strings.ShowNotificationsTitle">
-        <settingConfig type="boolean" />
-    </setting>
-
-    <setting propertyKey="@Properties.MessageLimit" title="@Strings.MessageLimitTitle">
-        <settingConfig type="numeric" min="5" max="50" />
-    </setting>
-
     <setting propertyKey="@Properties.ColorProfile" title="@Strings.ColorProfileTitle">
-        <settingConfig type="list" required="true">
+        <settingConfig type="list">
             <listEntry value="0">@Strings.ProfileClassic</listEntry>
             <listEntry value="1">@Strings.ProfileBlueSteel</listEntry>
             <listEntry value="2">@Strings.ProfileGreenNature</listEntry>
@@ -27,191 +19,472 @@
     </setting>
 
     <setting propertyKey="@Properties.UpdateSeconds" title="@Strings.UpdateSecondsTitle">
-        <settingConfig type="boolean" required="true" />
-    </setting>
-
-    <setting propertyKey="@Properties.IsCustomProfile" title="Enable Custom">
         <settingConfig type="boolean" />
     </setting>
 
-    <setting propertyKey="@Properties.HandFgColor" title="@Strings.HandFgColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
+    <setting propertyKey="@Properties.ShowNotifications" title="@Strings.ShowNotificationsTitle">
+        <settingConfig type="boolean" />
     </setting>
 
-    <setting propertyKey="@Properties.HandBgColor" title="@Strings.HandBgColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
+    <setting propertyKey="@Properties.MessageLimit" title="@Strings.MessageLimitTitle">
+        <settingConfig type="numeric" />
     </setting>
 
-    <setting propertyKey="@Properties.HandCenterColor" title="@Strings.HandCenterColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+    <group id="GroupHands" title="@Strings.GroupHandsTitle" description="@Strings.GroupHandsDesc">
 
-    <setting propertyKey="@Properties.FaceBgColor" title="@Strings.FaceBgColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+        <setting propertyKey="@Properties.HandFgColor" title="@Strings.HandFgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
 
-    <setting propertyKey="@Properties.FaceBorderColor" title="@Strings.FaceBorderColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+        <setting propertyKey="@Properties.HandBgColor" title="@Strings.HandBgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
 
-    <setting propertyKey="@Properties.DayBgColor" title="@Strings.DayBgColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+        <setting propertyKey="@Properties.HandCenterColor" title="@Strings.HandCenterColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
 
-    <setting propertyKey="@Properties.DayNameColor" title="@Strings.DayNameColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+    <group id="GroupFace" title="@Strings.GroupFaceTitle" description="@Strings.GroupFaceDesc">
 
-    <setting propertyKey="@Properties.DayNumberColor" title="@Strings.DayNumberColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+        <setting propertyKey="@Properties.FaceBgColor" title="@Strings.FaceBgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
 
-    <setting propertyKey="@Properties.DayOutlineColor" title="@Strings.DayOutlineColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+        <setting propertyKey="@Properties.FaceBorderColor" title="@Strings.FaceBorderColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
 
-    <setting propertyKey="@Properties.HourMarkerColor" title="@Strings.HourMarkerColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+    <group id="GroupDay" title="@Strings.DayFaceTitle" description="@Strings.DayFaceDesc">
 
-    <setting propertyKey="@Properties.MinuteTickColor" title="@Strings.MinuteTickColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+        <setting propertyKey="@Properties.DayBgColor" title="@Strings.DayBgColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
 
-    <setting propertyKey="@Properties.NumberColor" title="@Strings.NumberColorTitle">
-        <settingConfig type="list">
-            <listEntry value="0">@Strings.ColorBlack</listEntry>
-            <listEntry value="255">@Strings.ColorBlue</listEntry>
-            <listEntry value="16755200">@Strings.ColorGold</listEntry>
-            <listEntry value="5261129">@Strings.ColorDarkGray</listEntry>
-            <listEntry value="8421504">@Strings.ColorGray</listEntry>
-            <listEntry value="65280">@Strings.ColorGreen</listEntry>
-            <listEntry value="16711680">@Strings.ColorRed</listEntry>
-            <listEntry value="11184810">@Strings.ColorSilver</listEntry>
-            <listEntry value="16777215">@Strings.ColorWhite</listEntry>
-            <listEntry value="16776960">@Strings.ColorYellow</listEntry>
-        </settingConfig>
-    </setting>
+        <setting propertyKey="@Properties.DayNameColor" title="@Strings.DayNameColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.DayNumberColor" title="@Strings.DayNumberColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.DayOutlineColor" title="@Strings.DayOutlineColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+    </group>
+
+    <group id="GroupMarkers" title="@Strings.MarkerFaceTitle" description="@Strings.MarkerFaceDesc">
+
+        <setting propertyKey="@Properties.HourMarkerColor" title="@Strings.HourMarkerColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.MinuteTickColor" title="@Strings.MinuteTickColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+
+        <setting propertyKey="@Properties.NumberColor" title="@Strings.NumberColorTitle">
+            <settingConfig type="list">
+                <listEntry value="0x000000">@Strings.ColorBlack</listEntry>
+                <listEntry value="0x061a40">@Strings.ColorPrussianBlue</listEntry>
+                <listEntry value="0x090c9b">@Strings.ColorNavyElectric</listEntry>
+                <listEntry value="0x0d2c54">@Strings.ColorOxfordNavy</listEntry>
+                <listEntry value="0x130303">@Strings.ColorCoffeeBean</listEntry>
+                <listEntry value="0x241e4e">@Strings.ColorDarkAmethyst</listEntry>
+                <listEntry value="0x2d080a">@Strings.ColorRichMahogany</listEntry>
+                <listEntry value="0x003559">@Strings.ColorDeepSpaceBlue</listEntry>
+                <listEntry value="0x3c3744">@Strings.ColorGraphite</listEntry>
+                <listEntry value="0x504949">@Strings.ColorCharcoal</listEntry>
+                <listEntry value="0x7c3626">@Strings.ColorChestnut</listEntry>
+                <listEntry value="0x960200">@Strings.ColorOxblood</listEntry>
+                <listEntry value="0x7fb800">@Strings.ColorLimeMoss</listEntry>
+                <listEntry value="0x3066be">@Strings.ColorSmartBlue</listEntry>
+                <listEntry value="0x0353a4">@Strings.ColorSapphire</listEntry>
+                <listEntry value="0x006daa">@Strings.ColorCornflowerOcean</listEntry>
+                <listEntry value="0xa0a0a0">@Strings.ColorCoolSteel</listEntry>
+                <listEntry value="0xc0c0c0">@Strings.ColorSilver</listEntry>
+                <listEntry value="0xb9d6f2">@Strings.ColorPaleSky</listEntry>
+                <listEntry value="0xb4c5e4">@Strings.ColorPowderBlue</listEntry>
+                <listEntry value="0xeadaa2">@Strings.ColorVanillaCustard</listEntry>
+                <listEntry value="0xffd046">@Strings.ColorGoldenPollen</listEntry>
+                <listEntry value="0xffb400">@Strings.ColorAmberFlame</listEntry>
+                <listEntry value="0xce6c47">@Strings.ColorBurntPeach</listEntry>
+                <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
+                <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
+                <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+                <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
+                <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
+                <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
+                <listEntry value="0xfbfff1">@Strings.ColorIvory</listEntry>
+                <listEntry value="0xffffff">@Strings.ColorWhite</listEntry>
+            </settingConfig>
+        </setting>
+
+    </group>
 
 </settings>
