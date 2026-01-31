@@ -129,14 +129,14 @@ class MessengerApp extends Application
       _logger.debug("MessengerApp", "=== getInitialView START ===");
 
       try {
-          var defaultView = Application.Properties.getValue("DefaultView");
-          _logger.debug("MessengerApp", "DefaultView: " + defaultView);
+          var viewMode = Application.Properties.getValue("ViewMode");
+          _logger.debug("MessengerApp", "ViewMode: " + viewMode);
 
-          if (defaultView == null) {
-              defaultView = 0;  // Default to Clock view
+          if (viewMode == null) {
+              viewMode = 0;  // Default to Clock view
           }
 
-          switch (defaultView) {
+          switch (viewMode) {
               case 0:
                   _logger.debug("MessengerApp", "=== Returning MessagesView ===");
                   if (_messageView == null) {

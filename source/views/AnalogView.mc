@@ -124,69 +124,69 @@ class AnalogView extends WatchUi
     private function applyClassicProfile()
     {
         _logger.debug("AnalogView", "=== Applying Classic Profile ===");
-        _handbgcolor = 0x504949;      // Dark gray
-        _handfgcolor = 0xff0000;      // Red
-        _facebgcolor = 0x000000;      // Black
-        _facebordercolor = 0xc0c0c0;  // Silver
-        _handcentercolor = 0xff0000;  // Red
-        _daybgcolor = 0x000000;       // Black
-        _daynamecolor = 0xff3333;     // Light red
-        _day_numbercolor = 0xa0a0a0;  // Light gray
-        _dayoutlinecolor = 0xc0c0c0;  // Silver
-        _hourmarkercolor = 0xffffff;  // White
-        _minutetickcolor = 0xa0a0a0;  // Light gray
-        _numbercolor = 0xffffff;      // White
+        _handbgcolor = 0x504949;      // { "charcoal", "#504949" },
+        _handfgcolor = 0xff0000;      // { "red", "#ff0000" },
+        _facebgcolor = 0x000000;      // { "black", "#000000" },
+        _facebordercolor = 0xc0c0c0;  // { "silver", "#c0c0c0" },
+        _handcentercolor = 0xff0000;  // { "red", "#ff0000" },
+        _daybgcolor = 0x000000;       // { "black", "#000000" },
+        _daynamecolor = 0xff3333;     // { "cinnabar", "#ff3333" },
+        _day_numbercolor = 0xa0a0a0;  // { "cool steel", "#a0a0a0" },
+        _dayoutlinecolor = 0xc0c0c0;  // { "silver", "#c0c0c0" },
+        _hourmarkercolor = 0xffffff;  // { "white", "#ffffff" },
+        _minutetickcolor = 0xa0a0a0;  // { "cool steel", "#a0a0a0" },
+        _numbercolor = 0xffffff;      // { "white", "#ffffff" },
     }
 
     private function applyBlueSteelProfile()
     {
         _logger.debug("AnalogView", "=== Applying Blue Steel Profile ===");
-        _handbgcolor = 0x2c3e50;      // Dark blue-gray
-        _handfgcolor = 0x3498db;      // Bright blue
-        _facebgcolor = 0x000000;      // Black
-        _facebordercolor = 0x95a5a6;  // Gray-blue
-        _handcentercolor = 0x3498db;  // Bright blue
-        _daybgcolor = 0x000000;       // Black
-        _daynamecolor = 0x5dade2;     // Light blue
-        _day_numbercolor = 0xbdc3c7;  // Light gray
-        _dayoutlinecolor = 0x95a5a6;  // Gray-blue
-        _hourmarkercolor = 0xe8f8f5;  // Off-white
-        _minutetickcolor = 0x85929e;  // Medium gray
-        _numbercolor = 0xecf0f1;      // Light gray-white
+        _handbgcolor = 0x0d2c54;      // {"oxford navy", "#0d2c54"}
+        _handfgcolor = 0x00a6ed;      // {"fresh sky", "#00a6ed"},
+        _facebgcolor = 0x061a40;      // {"prussian blue", "#061a40"},
+        _facebordercolor = 0x061a40;  // {"prussian blue", "#061a40"},
+        _handcentercolor = 0x061a40;  // {"prussian blue", "#061a40"},
+        _daybgcolor = 0x061a40;       // {"prussian blue", "#061a40"},
+        _daynamecolor = 0xffffff;     // {"white", "#ffffff" }
+        _day_numbercolor = 0xffffff;  // {"white", "#ffffff" }
+        _dayoutlinecolor = 0x0d2c54;  // {"oxford navy", "#0d2c54"}
+        _hourmarkercolor = 0xffffff;  // {"white", "#ffffff" }
+        _minutetickcolor = 0xffffff;  // {"white", "#ffffff" }
+        _numbercolor = 0x00a6ed;      // {"fresh sky", "#00a6ed"},
     }
 
     private function applyGreenNatureProfile()
     {
         _logger.debug("AnalogView", "=== Applying Green Nature Profile ===");
-        _handbgcolor = 0x27371f;      // Dark green
-        _handfgcolor = 0x7cb342;      // Bright green
-        _facebgcolor = 0x000000;      // Black
-        _facebordercolor = 0x8d6e63;  // Brown
-        _handcentercolor = 0x7cb342;  // Bright green
-        _daybgcolor = 0x000000;       // Black
-        _daynamecolor = 0x9ccc65;     // Light green
-        _day_numbercolor = 0xa1887f;  // Light brown
-        _dayoutlinecolor = 0x8d6e63;  // Brown
-        _hourmarkercolor = 0xf1f8e9;  // Cream
-        _minutetickcolor = 0xa1887f;  // Light brown
-        _numbercolor = 0xdcedc8;      // Light green-white
+        _handbgcolor = 0xffcdbc;      // {"almond silk", "#ffcdbc"}
+        _handfgcolor = 0xf5853f;      // {"pumpkin spice","#f5853f"},
+        _facebgcolor = 0x130303;      // {"coffee bean", "#130303"},
+        _facebordercolor = 0x130303;  // {"coffee bean", "#130303"},
+        _handcentercolor = 0xf5853f;  // {"pumpkin spice","#f5853f"},
+        _daybgcolor = 0x130303;       // {"coffee bean", "#130303"},
+        _daynamecolor = 0xf5853f;     // {"pumpkin spice","#f5853f"},
+        _day_numbercolor = 0xf5853f;  // {"pumpkin spice","#f5853f"},
+        _dayoutlinecolor = 0xc0c0c0;  // {"silver", "#c0c0c0" },
+        _hourmarkercolor = 0xf5853f;  // {"pumpkin spice","#f5853f"},
+        _minutetickcolor = 0xf5853f;  // {"pumpkin spice","#f5853f"},
+        _numbercolor = 0xf5853f;      // {"pumpkin spice","#f5853f"},
     }
 
     private function applyGoldLuxuryProfile()
     {
         _logger.debug("AnalogView", "=== Applying Gold Luxury Profile ===");
-        _handbgcolor = 0x3e2723;      // Dark brown
-        _handfgcolor = 0xffd700;      // Gold
-        _facebgcolor = 0x000000;      // Black
-        _facebordercolor = 0xffd700;  // Gold
-        _handcentercolor = 0xffd700;  // Gold
-        _daybgcolor = 0x000000;       // Black
-        _daynamecolor = 0xffeb3b;     // Light gold
-        _day_numbercolor = 0xd7ccc8;  // Beige
-        _dayoutlinecolor = 0xffd700;  // Gold
-        _hourmarkercolor = 0xfffde7;  // Cream
-        _minutetickcolor = 0xbcaaa4;  // Light brown
-        _numbercolor = 0xfff9c4;      // Light gold
+        _handbgcolor = 0xc0c0c0;      // { "silver", "#c0c0c0" },
+        _handfgcolor = 0x000000;      // { "black", "#000000" },
+        _facebgcolor = 0xc0c0c0;      // { "silver", "#c0c0c0" },
+        _facebordercolor = 0x000000;  // { "black", "#000000" },
+        _handcentercolor = 0xc0c0c0;  // { "silver", "#c0c0c0" },
+        _daybgcolor = 0xc0c0c0;       // { "silver", "#c0c0c0" },
+        _daynamecolor = 0x000000;     // { "black", "#000000" },
+        _day_numbercolor = 0x000000;  // { "black", "#000000" },
+        _dayoutlinecolor = 0xc0c0c0;  // { "silver", "#c0c0c0" },
+        _hourmarkercolor = 0x000000;  // { "black", "#000000" },
+        _minutetickcolor = 0x000000;  // { "black", "#000000" },
+        _numbercolor = 0x000000;      // { "black", "#000000" },
     }
 
     private function loadCustomColors()
