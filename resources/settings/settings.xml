@@ -28,6 +28,7 @@
         <listEntry value="0xf5853f">@Strings.ColorPumpkinSpice</listEntry>
         <listEntry value="0xf6511d">@Strings.ColorCrimsonCarrot</listEntry>
         <listEntry value="0xff3333">@Strings.ColorCinnabar</listEntry>
+        <listEntry value="0x26A924">@Strings.ColorGreen</listEntry>
         <listEntry value="0xff0000">@Strings.ColorRed</listEntry>
         <listEntry value="0x00a6ed">@Strings.ColorFreshSky</listEntry>
         <listEntry value="0xffcdbc">@Strings.ColorAlmondSilk</listEntry>
@@ -140,4 +141,15 @@
         </settingConfig>
     </setting>
 
+     <setting propertyKey="@Properties.BatteryFullColor" title="@Strings.BatteryFullTitle">
+        <settingConfig type="list">
+            &colorList;
+        </settingConfig>
+    </setting>
+
+     <setting propertyKey="@Properties.BatteryEmptyColor" title="@Strings.BatteryEmptyTitle">
+        <settingConfig type="list">
+            &colorList;
+        </settingConfig>
+    </setting>
 </settings>

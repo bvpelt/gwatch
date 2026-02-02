@@ -35,6 +35,9 @@ class AnalogView extends WatchUi
     private var _minutetickcolor;  // = 0xa0a0a0;
     private var _numbercolor;      // = 0xffffff;
 
+    private var _batteryfull;   // = 0x26A924 green
+    private var _batteryempty;  // = 0xff0000 red
+
     private var _updateEverySecond = true;  // default value
 
     // Profile definitions
@@ -136,6 +139,8 @@ class AnalogView extends WatchUi
         _hourmarkercolor = 0xffffff;  // { "white", "#ffffff" },
         _minutetickcolor = 0xa0a0a0;  // { "cool steel", "#a0a0a0" },
         _numbercolor = 0xffffff;      // { "white", "#ffffff" },
+        _batteryfull = 0x26a924;      // { "green" , "#26a924" },
+        _batteryempty = 0xff0000;     // { "red", "#ff0000" },
     }
 
     private function applyBlueSteelProfile()
@@ -153,6 +158,8 @@ class AnalogView extends WatchUi
         _hourmarkercolor = 0xffffff;  // {"white", "#ffffff" }
         _minutetickcolor = 0xffffff;  // {"white", "#ffffff" }
         _numbercolor = 0x00a6ed;      // {"fresh sky", "#00a6ed"},
+        _batteryfull = 0x26a924;      // { "green" , "#26a924" },
+        _batteryempty = 0xff0000;     // { "red", "#ff0000" },
     }
 
     private function applyGreenNatureProfile()
@@ -170,6 +177,8 @@ class AnalogView extends WatchUi
         _hourmarkercolor = 0xf5853f;  // {"pumpkin spice","#f5853f"},
         _minutetickcolor = 0xf5853f;  // {"pumpkin spice","#f5853f"},
         _numbercolor = 0xf5853f;      // {"pumpkin spice","#f5853f"},
+        _batteryfull = 0x26a924;      // { "green" , "#26a924" },
+        _batteryempty = 0xff0000;     // { "red", "#ff0000" },
     }
 
     private function applyGoldLuxuryProfile()
@@ -187,6 +196,8 @@ class AnalogView extends WatchUi
         _hourmarkercolor = 0x000000;  // { "black", "#000000" },
         _minutetickcolor = 0x000000;  // { "black", "#000000" },
         _numbercolor = 0x000000;      // { "black", "#000000" },
+        _batteryfull = 0x26a924;      // { "green" , "#26a924" },
+        _batteryempty = 0xff0000;     // { "red", "#ff0000" },
     }
 
     private function loadCustomColors()
@@ -205,6 +216,8 @@ class AnalogView extends WatchUi
         _hourmarkercolor = _propertieUtility.getPropertyNumber("HourMarkerColor", 0xffffff);
         _minutetickcolor = _propertieUtility.getPropertyNumber("MinuteTickColor", 0xa0a0a0);
         _numbercolor = _propertieUtility.getPropertyNumber("NumberColor", 0xffffff);
+        _batteryfull = _propertieUtility.getPropertyNumber("BatteryFullColor", 0x26a924);
+        _batteryempty = _propertieUtility.getPropertyNumber("BatteryEmptyColor", 0xff0000);
     }
 
     function onLayout(dc)
@@ -279,7 +292,7 @@ class AnalogView extends WatchUi
         var arcRadius = (_radius * 0.92).toNumber();
 
         // Green portion (loaded)
-        dc.setColor(Graphics.COLOR_GREEN, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(_batteryfull, Graphics.COLOR_TRANSPARENT);
         dc.setPenWidth(loadPenWidth);
         dc.drawArc(
             _centerX, _centerY, arcRadius, Graphics.ARC_CLOCKWISE, startAngle,
@@ -287,7 +300,7 @@ class AnalogView extends WatchUi
         );
 
         // Red portion (remaining)
-        dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+        dc.setColor(_batteryempty, Graphics.COLOR_TRANSPARENT);
         dc.drawArc(
             _centerX, _centerY, arcRadius, Graphics.ARC_CLOCKWISE, startAngle - sweepAngle,
             startAngle

@@ -47,6 +47,8 @@
     <string id="HourMarkerColorTitle">Hour Marker</string>
     <string id="MinuteTickColorTitle">Minute Tick</string>
     <string id="NumberColorTitle">Number</string>
+    <string id="BatteryFullTitle">Battery Full</string>
+    <string id="BatteryEmptyTitle">Battery Empty</string>
 
 
     <string id="GroupHandsTitle">Hands Settings</string>
@@ -58,7 +60,7 @@
     <string id="MarkerFaceTitle">Marker Settings</string>
     <string id="MarkerFaceDesc">Customize the appearance for markers on the watch face.</string>
 
-   
+
     <string id="ColorBlue">Blue</string>
     <string id="ColorGold">Gold</string>
     <string id="ColorDarkGray">Dark Gray</string>
