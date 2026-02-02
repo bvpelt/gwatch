@@ -240,7 +240,7 @@ function checkIsSimulator()
     var devSettings = System.getDeviceSettings();
     getLogger().debug(
         "checkIsSimulator",
-        "simulator part number: " + devSettings.partNumber + " expected: 006-B4432-00"
+        "simulator part number: " + devSettings.partNumber + " expected pattern: 006-BXXXX-XX"
     );
 
     // 1. Check the official property if the device supports it
@@ -249,15 +249,24 @@ function checkIsSimulator()
     // clang-format off
         // Explicitly compare to true to avoid type confusion
         if (devSettings.isSimulator == true) {
+            getLogger().debug("checkIsSimulator", "isSimulator");
             return true;
         }
     }
     
     // 2. Fallback check using the Simulator Part Number
     // (006-B0000-00 is the standard simulator part number)
-    if (devSettings.partNumber.equals("006-B4432-00")) {
+
+    var partNumber = devSettings.partNumber;
+
+    if (partNumber != null && 
+        partNumber.length() >= 5 && 
+        partNumber.substring(0, 5).equals("006-B")) {
+        // Part number starts with "006-B"
+        getLogger().debug("checkIsSimulator", "Part number starts with 006-B");
         return true;
     }
     
+    getLogger().debug("checkIsSimulator", "Not in simulator");
     return false;
 }

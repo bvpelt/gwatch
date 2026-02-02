@@ -25,8 +25,8 @@
     <string id="ColorProfileTitle">Color Profile</string>
     <string id="ProfileClassic">Classic Red</string>
     <string id="ProfileBlueSteel">Blue Steel</string>
-    <string id="ProfileGreenNature">Green Nature</string>
-    <string id="ProfileGoldLuxury">Gold Luxury</string>
+    <string id="ProfileOrange">Orange</string>
+    <string id="ProfileWhite">White</string>
     <string id="ProfileCustom">Custom</string>
 
     <string id="UpdateSecondsTitle">Update Every Second</string>

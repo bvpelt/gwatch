@@ -15,7 +15,7 @@
     LEVEL_WARN = 3,
     LEVEL_ERROR = 4,
     -->
-    <property id="MinimalDebugLevel" type="number">0</property>
+    <property id="MinimalDebugLevel" type="number">3</property>
 
     <!-- Profile selector -->
     <property id="ColorProfile" type="number">0</property>
@@ -40,9 +40,7 @@
     <property id="HourMarkerColor" type="number">16777215</property>
     <property id="MinuteTickColor" type="number">10526880</property>
     <property id="NumberColor" type="number">16777215</property>
-
-
     <property id="BatteryFullColor" type="number">0x26a924</property>
-<property id="BatteryEmptyColor" type="number">0xff0000</property>
+    <property id="BatteryEmptyColor" type="number">0xff0000</property>
 
 </properties>

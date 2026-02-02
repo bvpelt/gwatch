@@ -43,8 +43,8 @@ class AnalogView extends WatchUi
     // Profile definitions
     private const PROFILE_CLASSIC = 0;
     private const PROFILE_BLUE_STEEL = 1;
-    private const PROFILE_GREEN_NATURE = 2;
-    private const PROFILE_GOLD_LUXURY = 3;
+    private const PROFILE_ORANGE = 2;
+    private const PROFILE_WHITE = 3;
     private const PROFILE_CUSTOM = 4;
 
     // Constructor
@@ -111,10 +111,10 @@ class AnalogView extends WatchUi
             applyClassicProfile();
         } else if (profile == PROFILE_BLUE_STEEL) {
             applyBlueSteelProfile();
-        } else if (profile == PROFILE_GREEN_NATURE) {
-            applyGreenNatureProfile();
-        } else if (profile == PROFILE_GOLD_LUXURY) {
-            applyGoldLuxuryProfile();
+        } else if (profile == PROFILE_ORANGE) {
+            applyOrangeProfile();
+        } else if (profile == PROFILE_WHITE) {
+            applyWhiteProfile();
         } else if (profile == PROFILE_CUSTOM) {
             loadCustomColors();
         } else {
@@ -162,9 +162,9 @@ class AnalogView extends WatchUi
         _batteryempty = 0xff0000;     // { "red", "#ff0000" },
     }
 
-    private function applyGreenNatureProfile()
+    private function applyOrangeProfile()
     {
-        _logger.debug("AnalogView", "=== Applying Green Nature Profile ===");
+        _logger.debug("AnalogView", "=== Applying Orange Profile ===");
         _handbgcolor = 0xffcdbc;      // {"almond silk", "#ffcdbc"}
         _handfgcolor = 0xf5853f;      // {"pumpkin spice","#f5853f"},
         _facebgcolor = 0x130303;      // {"coffee bean", "#130303"},
@@ -181,9 +181,9 @@ class AnalogView extends WatchUi
         _batteryempty = 0xff0000;     // { "red", "#ff0000" },
     }
 
-    private function applyGoldLuxuryProfile()
+    private function applyWhiteProfile()
     {
-        _logger.debug("AnalogView", "=== Applying Gold Luxury Profile ===");
+        _logger.debug("AnalogView", "=== Applying White Profile ===");
         _handbgcolor = 0xc0c0c0;      // { "silver", "#c0c0c0" },
         _handfgcolor = 0x000000;      // { "black", "#000000" },
         _facebgcolor = 0xc0c0c0;      // { "silver", "#c0c0c0" },
@@ -402,13 +402,13 @@ class AnalogView extends WatchUi
         var _centerYPos = _centerY.toNumber();
 
         var font = Graphics.FONT_XTINY;
-        var boxNumberWidth = dc.getTextWidthInPixels(dayString, font);
-        var boxWeekdayWidth = dc.getTextWidthInPixels(weekday, font);
+        var boxNumberWidth = 1.1 * dc.getTextWidthInPixels(dayString, font);
+        var boxWeekdayWidth = 1.1 * dc.getTextWidthInPixels(weekday, font);
 
-        var boxHeight = (_radius * 0.16).toNumber();
+        var boxHeight = (_radius * 0.19).toNumber();
         var boxSpacing = (_radius * 0.03).toNumber();
 
-        var maxlen = (_centerX + _radius * 0.65).toNumber();
+        var maxlen = (_centerX + _radius * 0.60).toNumber();
         var boxDNumberX = maxlen - boxNumberWidth;
         var boxWDNameX = maxlen - boxWeekdayWidth - boxNumberWidth - boxSpacing;
 
